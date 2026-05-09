@@ -1,25 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QC3EXP5SGC"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-QC3EXP5SGC');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO: Fixed title with real keywords -->
 <title>Google Ads & Performance Marketing Agency Network | AD Solutions Inc.</title>
-<meta name="description" content="AD Solutions Inc. connects brands with performance-driven advertising agencies. Philippines clients → Zel Digital. US clients → Kaizen Strategy.">
+
+<!-- SEO: Fixed meta description — sells the click, not the org chart -->
+<meta name="description" content="AD Solutions Inc. connects US and Philippine businesses with elite Google Ads and performance marketing specialists. 10+ years of paid acquisition expertise. Find your agency partner today.">
+
+<!-- SEO: Open Graph -->
+<meta property="og:title" content="Google Ads & Performance Marketing Agency Network | AD Solutions Inc.">
+<meta property="og:description" content="Connect with elite Google Ads and paid acquisition specialists for US and Philippine markets. Performance-driven. Results accountable.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://adsolutionsincorp.com">
+
+<!-- SEO: Canonical -->
+<link rel="canonical" href="https://adsolutionsincorp.com">
+
+<!-- SEO: Schema Markup — Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AD Solutions Inc.",
+  "url": "https://adsolutionsincorp.com",
+  "description": "Performance advertising agency network connecting US and Philippine businesses with elite Google Ads and paid acquisition specialists.",
+  "founder": {
+    "@type": "Person",
+    "name": "Hans Lacida",
+    "url": "https://hanslacida.com",
+    "jobTitle": "Paid Acquisition Systems Operator",
+    "sameAs": ["https://hanslacida.com", "https://zeldigital.com"]
+  },
+  "areaServed": ["US", "PH"],
+  "serviceType": ["Google Ads Management", "Paid Search Advertising", "Performance Marketing", "Lead Generation"],
+  "memberOf": [
+    {"@type": "Organization", "name": "Zel Digital", "url": "https://zeldigital.com"},
+    {"@type": "Organization", "name": "Kaizen Strategy", "url": "https://kaizenstrategy.us"}
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --ink: #0a0a0a;
     --ink-2: #2a2a2a;
@@ -33,17 +70,13 @@
     --white: #ffffff;
     --card-border: rgba(10,10,10,0.12);
   }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--cream);
     color: var(--ink);
     overflow-x: hidden;
   }
-
-  /* ── NOISE OVERLAY ── */
   body::before {
     content: '';
     position: fixed;
@@ -63,11 +96,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 1.25rem 3rem;
-    background: rgba(245,242,237,0.85);
+    background: rgba(245,242,237,0.9);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--card-border);
   }
-
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.5rem;
@@ -75,17 +107,13 @@
     color: var(--ink);
     text-decoration: none;
   }
-
-  .nav-logo span {
-    color: var(--gold);
-  }
-
+  .nav-logo span { color: var(--gold); }
   .nav-links {
     display: flex;
     gap: 2rem;
     list-style: none;
+    align-items: center;
   }
-
   .nav-links a {
     font-size: 0.8rem;
     font-weight: 500;
@@ -95,7 +123,6 @@
     text-decoration: none;
     transition: color 0.2s;
   }
-
   .nav-links a:hover { color: var(--ink); }
 
   /* ── HERO ── */
@@ -108,7 +135,6 @@
     position: relative;
     overflow: hidden;
   }
-
   .hero-bg-text {
     position: absolute;
     top: 50%;
@@ -122,7 +148,6 @@
     letter-spacing: -0.02em;
     user-select: none;
   }
-
   .hero-tag {
     font-size: 0.7rem;
     font-weight: 500;
@@ -134,7 +159,6 @@
     align-items: center;
     gap: 0.75rem;
   }
-
   .hero-tag::before {
     content: '';
     display: inline-block;
@@ -142,7 +166,6 @@
     height: 1px;
     background: var(--gold);
   }
-
   .hero h1 {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(3rem, 7vw, 6.5rem);
@@ -152,29 +175,25 @@
     margin-bottom: 2rem;
     position: relative;
   }
-
   .hero h1 em {
     font-style: italic;
     color: var(--gold);
   }
-
   .hero-sub {
     font-size: 1.1rem;
     font-weight: 300;
     color: var(--ink-muted);
-    max-width: 520px;
+    max-width: 560px;
     line-height: 1.75;
     margin-bottom: 3rem;
     position: relative;
   }
-
   .hero-cta-group {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
     position: relative;
   }
-
   .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -191,14 +210,12 @@
     cursor: pointer;
     transition: background 0.2s, color 0.2s, transform 0.15s;
   }
-
   .btn-primary:hover {
     background: var(--gold);
     border-color: var(--gold);
     color: var(--ink);
     transform: translateY(-2px);
   }
-
   .btn-outline {
     display: inline-flex;
     align-items: center;
@@ -215,12 +232,10 @@
     cursor: pointer;
     transition: border-color 0.2s, transform 0.15s;
   }
-
   .btn-outline:hover {
     border-color: var(--ink);
     transform: translateY(-2px);
   }
-
   .hero-scroll-hint {
     position: absolute;
     bottom: 2.5rem;
@@ -234,7 +249,6 @@
     align-items: center;
     gap: 0.5rem;
   }
-
   .hero-scroll-hint::after {
     content: '';
     display: block;
@@ -243,14 +257,13 @@
     background: var(--ink-muted);
     animation: scrollLine 1.8s ease-in-out infinite;
   }
-
   @keyframes scrollLine {
     0%, 100% { opacity: 0.3; transform: scaleY(1); }
     50% { opacity: 1; transform: scaleY(0.6); }
   }
 
-  /* ── STATS BAR ── */
-  .stats-bar {
+  /* ── CREDIBILITY BAR (replaced stats bar) ── */
+  .cred-bar {
     background: var(--ink);
     color: var(--cream);
     padding: 2.5rem 3rem;
@@ -259,34 +272,27 @@
     gap: 2rem;
     position: relative;
   }
-
-  .stat-item {
+  .cred-item {
     border-left: 1px solid rgba(255,255,255,0.12);
     padding-left: 1.5rem;
   }
-
-  .stat-item:first-child { border-left: none; padding-left: 0; }
-
-  .stat-num {
+  .cred-item:first-child { border-left: none; padding-left: 0; }
+  .cred-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2.8rem;
     color: var(--gold);
     line-height: 1;
     margin-bottom: 0.4rem;
   }
-
-  .stat-label {
+  .cred-label {
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: rgba(245,242,237,0.55);
   }
 
-  /* ── SECTION ── */
-  section {
-    padding: 6rem 3rem;
-  }
-
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 3rem; }
   .section-tag {
     font-size: 0.68rem;
     font-weight: 500;
@@ -298,7 +304,6 @@
     align-items: center;
     gap: 0.75rem;
   }
-
   .section-tag::before {
     content: '';
     display: inline-block;
@@ -306,7 +311,6 @@
     height: 1px;
     background: var(--gold);
   }
-
   .section-h2 {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(2rem, 4vw, 3.5rem);
@@ -315,7 +319,6 @@
     margin-bottom: 1.5rem;
     max-width: 640px;
   }
-
   .section-sub {
     font-size: 1rem;
     font-weight: 300;
@@ -325,12 +328,98 @@
     margin-bottom: 3rem;
   }
 
+  /* ── SEO CONTENT: US SERVICES ── */
+  .us-services {
+    background: var(--white);
+    padding: 6rem 3rem;
+  }
+  .us-services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .us-services-copy h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+  .us-services-copy p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--ink-2);
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+  }
+  .us-services-copy p strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .verticals-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .verticals-list li {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+  }
+  .verticals-list li::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .us-services-aside {
+    background: var(--cream-2);
+    padding: 2.5rem;
+    border-left: 3px solid var(--us-accent);
+  }
+  .aside-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--us-accent);
+    margin-bottom: 1.25rem;
+  }
+  .aside-point {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .aside-point:last-child { border-bottom: none; }
+  .aside-point-title {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .aside-point-desc {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
   /* ── AGENCY CARDS ── */
   .agencies {
     background: var(--cream-2);
     padding: 6rem 3rem;
   }
-
   .agency-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -339,7 +428,6 @@
     background: var(--card-border);
     border: 1.5px solid var(--card-border);
   }
-
   .agency-card {
     background: var(--cream);
     padding: 3rem;
@@ -351,7 +439,6 @@
     display: block;
     color: inherit;
   }
-
   .agency-card::before {
     content: '';
     position: absolute;
@@ -361,19 +448,11 @@
     transform-origin: left;
     transition: transform 0.35s ease;
   }
-
   .agency-card.ph::before { background: var(--ph-accent); }
   .agency-card.us::before { background: var(--us-accent); }
-
   .agency-card:hover::before { transform: scaleX(1); }
   .agency-card:hover { background: var(--white); }
-
-  .agency-flag {
-    font-size: 2rem;
-    margin-bottom: 1.25rem;
-    display: block;
-  }
-
+  .agency-flag { font-size: 2rem; margin-bottom: 1.25rem; display: block; }
   .agency-market {
     font-size: 0.65rem;
     font-weight: 500;
@@ -381,10 +460,8 @@
     text-transform: uppercase;
     margin-bottom: 0.75rem;
   }
-
   .agency-card.ph .agency-market { color: var(--ph-accent); }
   .agency-card.us .agency-market { color: var(--us-accent); }
-
   .agency-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 2.5rem;
@@ -393,14 +470,12 @@
     margin-bottom: 0.5rem;
     line-height: 1;
   }
-
   .agency-domain {
     font-size: 0.78rem;
     color: var(--ink-muted);
     margin-bottom: 1.5rem;
     font-weight: 300;
   }
-
   .agency-desc {
     font-size: 0.92rem;
     line-height: 1.75;
@@ -408,14 +483,12 @@
     font-weight: 300;
     margin-bottom: 2rem;
   }
-
   .agency-services {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 2rem;
   }
-
   .service-pill {
     font-size: 0.68rem;
     font-weight: 500;
@@ -425,7 +498,6 @@
     border: 1px solid var(--card-border);
     color: var(--ink-muted);
   }
-
   .agency-link {
     display: inline-flex;
     align-items: center;
@@ -440,14 +512,10 @@
     padding-bottom: 2px;
     transition: gap 0.2s;
   }
-
   .agency-card:hover .agency-link { gap: 0.9rem; }
 
   /* ── HOW IT WORKS ── */
-  .how {
-    background: var(--white);
-  }
-
+  .how { background: var(--white); }
   .how-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -456,13 +524,11 @@
     background: var(--card-border);
     border: 1px solid var(--card-border);
   }
-
   .how-step {
     background: var(--white);
     padding: 2.5rem 2rem;
     position: relative;
   }
-
   .step-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 4rem;
@@ -473,7 +539,6 @@
     top: 1.5rem;
     right: 1.5rem;
   }
-
   .step-icon {
     width: 42px;
     height: 42px;
@@ -484,14 +549,12 @@
     margin-bottom: 1.25rem;
     font-size: 1.1rem;
   }
-
   .step-title {
     font-family: 'DM Serif Display', serif;
     font-size: 1.2rem;
     color: var(--ink);
     margin-bottom: 0.75rem;
   }
-
   .step-desc {
     font-size: 0.87rem;
     color: var(--ink-muted);
@@ -499,7 +562,7 @@
     font-weight: 300;
   }
 
-  /* ── GEO DETECTOR ── */
+  /* ── GEO BANNER ── */
   .geo-banner {
     background: var(--ink);
     color: var(--cream);
@@ -510,25 +573,17 @@
     gap: 2rem;
     flex-wrap: wrap;
   }
-
-  .geo-banner-text h3 {
+  .geo-banner-text h2 {
     font-family: 'DM Serif Display', serif;
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
   }
-
   .geo-banner-text p {
     font-size: 0.88rem;
     color: rgba(245,242,237,0.6);
     font-weight: 300;
   }
-
-  .geo-btns {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
+  .geo-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
   .geo-btn {
     display: inline-flex;
     align-items: center;
@@ -541,22 +596,13 @@
     text-decoration: none;
     border: 1px solid transparent;
     cursor: pointer;
-    transition: transform 0.15s, background 0.2s;
+    transition: transform 0.15s, opacity 0.2s;
   }
+  .geo-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+  .geo-btn.ph { background: var(--ph-accent); color: white; }
+  .geo-btn.us { background: var(--us-accent); color: white; }
 
-  .geo-btn:hover { transform: translateY(-2px); }
-
-  .geo-btn.ph {
-    background: var(--ph-accent);
-    color: white;
-  }
-
-  .geo-btn.us {
-    background: var(--us-accent);
-    color: white;
-  }
-
-  /* ── WHY AD SOLUTIONS ── */
+  /* ── WHY ── */
   .why-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -564,20 +610,13 @@
     align-items: start;
     margin-top: 2rem;
   }
-
   .why-list {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
-
-  .why-item {
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
-  }
-
+  .why-item { display: flex; gap: 1.25rem; align-items: flex-start; }
   .why-icon {
     width: 36px;
     height: 36px;
@@ -589,21 +628,8 @@
     flex-shrink: 0;
     margin-top: 2px;
   }
-
-  .why-item-title {
-    font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--ink);
-    margin-bottom: 0.3rem;
-  }
-
-  .why-item-desc {
-    font-size: 0.85rem;
-    color: var(--ink-muted);
-    line-height: 1.65;
-    font-weight: 300;
-  }
-
+  .why-item-title { font-weight: 500; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.3rem; }
+  .why-item-desc { font-size: 0.85rem; color: var(--ink-muted); line-height: 1.65; font-weight: 300; }
   .why-visual {
     background: var(--ink);
     padding: 3rem;
@@ -611,7 +637,6 @@
     position: relative;
     overflow: hidden;
   }
-
   .why-visual::before {
     content: 'AD';
     font-family: 'Bebas Neue', sans-serif;
@@ -622,31 +647,20 @@
     color: rgba(255,255,255,0.05);
     line-height: 1;
   }
-
-  .why-visual-stat {
-    margin-bottom: 2rem;
-  }
-
+  .why-visual-stat { margin-bottom: 2rem; }
   .why-visual-stat .num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 3.5rem;
     color: var(--gold);
     line-height: 1;
   }
-
   .why-visual-stat .label {
     font-size: 0.78rem;
     color: rgba(245,242,237,0.55);
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
-
-  .why-visual-divider {
-    height: 1px;
-    background: rgba(255,255,255,0.1);
-    margin: 1.5rem 0;
-  }
-
+  .why-visual-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 1.5rem 0; }
   .why-visual-quote {
     font-family: 'DM Serif Display', serif;
     font-style: italic;
@@ -655,7 +669,165 @@
     line-height: 1.65;
   }
 
-  /* ── AUTO REDIRECT MODAL ── */
+  /* ── OPERATOR PROFILE (Hans Lacida) ── */
+  .operator {
+    background: var(--cream-2);
+    padding: 6rem 3rem;
+    border-top: 1px solid var(--card-border);
+  }
+  .operator-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .operator-identity {}
+  .operator-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(200,168,75,0.3);
+    padding: 0.4rem 0.85rem;
+  }
+  .operator-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .operator-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
+  }
+  .operator-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 2rem;
+  }
+  .operator-bio {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--ink-2);
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+  .operator-bio strong { color: var(--ink); font-weight: 500; }
+  .operator-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    transition: gap 0.2s, color 0.2s;
+  }
+  .operator-link:hover { gap: 0.9rem; color: var(--gold); border-color: var(--gold); }
+  .operator-credentials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--card-border);
+    border: 1px solid var(--card-border);
+    margin-top: 2.5rem;
+  }
+  .cred-block {
+    background: var(--cream);
+    padding: 1.5rem;
+  }
+  .cred-block-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .cred-block-label {
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .operator-brands {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--card-border);
+    border: 1px solid var(--card-border);
+  }
+  .brand-row {
+    background: var(--cream);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+  }
+  .brand-row:hover { background: var(--white); }
+  .brand-row-left {}
+  .brand-row-tag {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.35rem;
+  }
+  .brand-row-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+  .brand-row-url {
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    font-weight: 300;
+  }
+  .brand-row-arrow {
+    font-size: 1.2rem;
+    color: var(--ink-muted);
+    transition: transform 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+  .brand-row:hover .brand-row-arrow { transform: translateX(6px); color: var(--gold); }
+  .brand-row-market {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--card-border);
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .brand-row.us-brand .brand-row-market { color: var(--us-accent); border-color: rgba(184,50,50,0.25); }
+  .brand-row.ph-brand .brand-row-market { color: var(--ph-accent); border-color: rgba(26,111,181,0.25); }
+  .brand-row.personal-brand .brand-row-market { color: var(--gold); border-color: rgba(200,168,75,0.3); }
+
+  /* ── REDIRECT MODAL ── */
   .redirect-modal {
     display: none;
     position: fixed;
@@ -666,11 +838,7 @@
     justify-content: center;
     backdrop-filter: blur(4px);
   }
-
-  .redirect-modal.active {
-    display: flex;
-  }
-
+  .redirect-modal.active { display: flex; }
   .modal-box {
     background: var(--cream);
     padding: 3rem;
@@ -680,21 +848,17 @@
     animation: slideUp 0.35s ease;
     position: relative;
   }
-
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-
   .modal-flag { font-size: 2.5rem; margin-bottom: 1rem; }
-
   .modal-box h3 {
     font-family: 'DM Serif Display', serif;
     font-size: 1.75rem;
     color: var(--ink);
     margin-bottom: 0.75rem;
   }
-
   .modal-box p {
     font-size: 0.9rem;
     color: var(--ink-muted);
@@ -702,13 +866,7 @@
     font-weight: 300;
     margin-bottom: 2rem;
   }
-
-  .modal-actions {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
+  .modal-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
   .modal-close {
     position: absolute;
     top: 1rem;
@@ -726,45 +884,65 @@
     background: #050505;
     color: rgba(245,242,237,0.5);
     padding: 3rem;
+  }
+  .footer-top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
   }
-
+  .footer-brand {}
   .footer-logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     letter-spacing: 0.1em;
-    color: rgba(245,242,237,0.8);
+    color: rgba(245,242,237,0.85);
+    margin-bottom: 0.5rem;
   }
-
   .footer-logo span { color: var(--gold); }
-
-  .footer-links {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    flex-wrap: wrap;
-  }
-
-  .footer-links a {
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+  .footer-tagline {
+    font-size: 0.75rem;
     color: rgba(245,242,237,0.35);
+    letter-spacing: 0.08em;
+    font-weight: 300;
+  }
+  .footer-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .footer-nav-col {}
+  .footer-nav-label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245,242,237,0.3);
+    margin-bottom: 1rem;
+  }
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .footer-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: rgba(245,242,237,0.5);
     text-decoration: none;
     transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
-
-  .footer-links a:hover { color: rgba(245,242,237,0.7); }
-
+  .footer-links a:hover { color: var(--gold); }
+  .footer-links .flag { font-size: 0.85rem; }
   .footer-copy {
     font-size: 0.72rem;
     letter-spacing: 0.05em;
-    width: 100%;
-    margin-top: 1rem;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255,255,255,0.06);
     display: flex;
@@ -772,12 +950,10 @@
     flex-wrap: wrap;
     gap: 0.5rem;
   }
-
   .footer-copy a {
     color: rgba(245,242,237,0.4);
     text-decoration: none;
   }
-
   .footer-copy a:hover { color: var(--gold); }
 
   /* ── ANIMATIONS ── */
@@ -786,12 +962,7 @@
     transform: translateY(28px);
     transition: opacity 0.65s ease, transform 0.65s ease;
   }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
   .fade-up-d1 { transition-delay: 0.1s; }
   .fade-up-d2 { transition-delay: 0.2s; }
   .fade-up-d3 { transition-delay: 0.3s; }
@@ -802,11 +973,15 @@
     nav { padding: 1rem 1.25rem; }
     .nav-links { display: none; }
     .hero { padding: 7rem 1.25rem 4rem; }
-    section, .agencies, .how { padding: 4rem 1.25rem; }
-    .stats-bar { padding: 2rem 1.25rem; }
+    section, .agencies, .how, .us-services, .operator { padding: 4rem 1.25rem; }
+    .cred-bar { padding: 2rem 1.25rem; }
     .geo-banner { padding: 2rem 1.25rem; }
     footer { padding: 2rem 1.25rem; }
     .why-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .us-services-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .operator-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .operator-credentials { grid-template-columns: 1fr 1fr; }
+    .footer-nav { grid-template-columns: 1fr; gap: 1.5rem; }
     .hero-scroll-hint { display: none; }
     .modal-box { padding: 2rem; }
   }
@@ -814,7 +989,7 @@
 </head>
 <body>
 
-<!-- AUTO REDIRECT MODAL -->
+<!-- REDIRECT MODAL -->
 <div class="redirect-modal" id="redirectModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">✕</button>
@@ -823,7 +998,7 @@
     <p id="modalDesc">Based on your location, we have a specialized agency partner ready to serve you with local market expertise and proven results.</p>
     <div class="modal-actions">
       <a href="#" class="btn-primary" id="modalCta">Visit Our Partner →</a>
-      <button class="btn-outline" onclick="closeModal()">Stay Here</button>
+      <button class="btn-outline" onclick="closeModal()">Stay & Learn More</button>
     </div>
   </div>
 </div>
@@ -833,8 +1008,8 @@
   <a class="nav-logo" href="#">AD<span>Solutions</span>Inc.</a>
   <ul class="nav-links">
     <li><a href="#agencies">Our Partners</a></li>
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#why">Why Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#operator">The Operator</a></li>
     <li><a href="#find-agency" class="btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.72rem;">Find My Agency</a></li>
   </ul>
 </nav>
@@ -842,50 +1017,45 @@
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg-text">RESULTS</div>
-
   <div class="hero-tag fade-up">Performance Advertising Network</div>
-
   <h1 class="fade-up fade-up-d1">
-    Where Brands Find<br>Agencies That <em>Actually</em><br>Deliver.
+    Google Ads & Paid<br>Acquisition That <em>Actually</em><br>Converts.
   </h1>
-
   <p class="hero-sub fade-up fade-up-d2">
-    AD Solutions Inc. connects ambitious businesses with elite advertising partners — handpicked for your market, built for your goals, accountable to your results.
+    AD Solutions Inc. connects US and Philippine businesses with elite Google Ads and performance marketing specialists — accountable to your results, fluent in your market.
   </p>
-
   <div class="hero-cta-group fade-up fade-up-d3">
     <a href="#find-agency" class="btn-primary">Find My Agency →</a>
-    <a href="#agencies" class="btn-outline">View Partners</a>
+    <a href="#services" class="btn-outline">What We Do</a>
   </div>
-
   <div class="hero-scroll-hint">Scroll</div>
 </section>
 
-<!-- STATS -->
-<div class="stats-bar fade-up">
-  <div class="stat-item">
-    <div class="stat-num">2</div>
-    <div class="stat-label">Vetted Agency Partners</div>
+<!-- CREDIBILITY BAR -->
+<div class="cred-bar fade-up">
+  <div class="cred-item">
+    <div class="cred-num">10+</div>
+    <div class="cred-label">Years Paid Acquisition</div>
   </div>
-  <div class="stat-item">
-    <div class="stat-num">DA55</div>
-    <div class="stat-label">Domain Authority</div>
+  <div class="cred-item">
+    <div class="cred-num">$2M+</div>
+    <div class="cred-label">Ad Spend Managed</div>
   </div>
-  <div class="stat-item">
-    <div class="stat-num">2</div>
-    <div class="stat-label">Markets Served</div>
+  <div class="cred-item">
+    <div class="cred-num">5+</div>
+    <div class="cred-label">Verticals Served</div>
   </div>
-  <div class="stat-item">
-    <div class="stat-num">100%</div>
-    <div class="stat-label">Performance-Focused</div>
+  <div class="cred-item">
+    <div class="cred-num">DA55</div>
+    <div class="cred-label">Domain Authority</div>
   </div>
 </div>
 
 <!-- GEO BANNER -->
 <div class="geo-banner" id="find-agency">
   <div class="geo-banner-text">
-    <h3>Where Are You Located?</h3>
-    <p>We'll connect you with the right agency partner for your market.</p>
+    <h2>Where Are You Located?</h2>
+    <p>We'll connect you with the right Google Ads specialist for your market.</p>
   </div>
   <div class="geo-btns">
     <a href="https://zeldigital.com" class="geo-btn ph" target="_blank" rel="noopener">
@@ -897,12 +1067,60 @@
   </div>
 </div>
 
+<!-- US SERVICES — SEO Content Section -->
+<section class="us-services" id="services">
+  <div class="section-tag fade-up">Google Ads Management</div>
+  <h2 class="section-h2 fade-up fade-up-d1">Performance Marketing<br>for US & Philippine Businesses.</h2>
+  <div class="us-services-grid">
+    <div class="us-services-copy fade-up fade-up-d2">
+      <h3>Google Ads Management for US Home Services, E-Commerce & B2B</h3>
+      <p>
+        Our US-facing practice specializes in <strong>Google Ads management for businesses that need real leads, not vanity metrics.</strong> We run Search, Performance Max, Display, and Local Services Ads across high-intent verticals — with conversion tracking built to actual revenue, not clicks.
+      </p>
+      <p>
+        Every campaign is built around a single question: what does a converted lead actually cost, and is it profitable? We don't manage ad spend for the sake of it. We build acquisition systems — keyword architecture, landing page alignment, bid strategy, and measurement infrastructure — that compound over time.
+      </p>
+      <p>
+        <strong>Verticals we operate in:</strong>
+      </p>
+      <ul class="verticals-list">
+        <li>HVAC & Home Services</li>
+        <li>Junk Removal & Hauling</li>
+        <li>E-Commerce & DTC</li>
+        <li>Healthcare & Behavioral Health</li>
+        <li>B2B Lead Generation</li>
+        <li>Legal & Professional Services</li>
+        <li>Roofing & Contractors</li>
+        <li>Hospitality & Travel</li>
+      </ul>
+    </div>
+    <div class="us-services-aside fade-up fade-up-d3">
+      <div class="aside-label">🇺🇸 What US Clients Get</div>
+      <div class="aside-point">
+        <div class="aside-point-title">Full-Funnel Conversion Tracking</div>
+        <div class="aside-point-desc">GA4, GTM, server-side tagging, and call tracking — so you know exactly which keyword drove the booked job.</div>
+      </div>
+      <div class="aside-point">
+        <div class="aside-point-title">Search Campaign Architecture</div>
+        <div class="aside-point-desc">Keyword strategy, match type discipline, RSA copywriting, and negative keyword systems built to reduce wasted spend from day one.</div>
+      </div>
+      <div class="aside-point">
+        <div class="aside-point-title">Performance Max Auditing</div>
+        <div class="aside-point-desc">PMax asset group optimization, audience signal strategy, and spend allocation review — so the algorithm works for you, not against you.</div>
+      </div>
+      <div class="aside-point">
+        <div class="aside-point-title">Monthly Reporting & Strategy</div>
+        <div class="aside-point-desc">Looker Studio dashboards, honest numbers, and regular review sessions. No hiding behind vanity metrics.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- AGENCIES -->
 <section class="agencies" id="agencies">
   <div class="section-tag fade-up">Our Partner Agencies</div>
   <h2 class="section-h2 fade-up fade-up-d1">Two Elite Agencies.<br>Two Distinct Markets.</h2>
-  <p class="section-sub fade-up fade-up-d2">We don't believe in one-size-fits-all advertising. Each partner is purpose-built for their market, fluent in local consumer behavior, and relentlessly focused on ROI.</p>
-
+  <p class="section-sub fade-up fade-up-d2">Purpose-built for their markets. Fluent in local consumer behavior. Relentlessly focused on ROI.</p>
   <div class="agency-grid">
     <!-- PH -->
     <a href="https://zeldigital.com" class="agency-card ph" target="_blank" rel="noopener">
@@ -923,7 +1141,6 @@
       </div>
       <span class="agency-link">Visit Zel Digital →</span>
     </a>
-
     <!-- US -->
     <a href="https://kaizenstrategy.us" class="agency-card us" target="_blank" rel="noopener">
       <span class="agency-flag">🇺🇸</span>
@@ -931,13 +1148,13 @@
       <div class="agency-name">Kaizen Strategy</div>
       <div class="agency-domain">kaizenstrategy.us</div>
       <p class="agency-desc">
-        Kaizen Strategy brings continuous-improvement principles to American marketing — data-obsessed, conversion-engineered, and built for scale. From local SMBs to national campaigns, their strategic frameworks compound results over time.
+        Kaizen Strategy brings continuous-improvement principles to American paid acquisition — data-obsessed, conversion-engineered, and built for scale. Google Ads specialists for home services, e-commerce, and B2B companies across the US.
       </p>
       <div class="agency-services">
+        <span class="service-pill">Google Ads</span>
         <span class="service-pill">Paid Search</span>
-        <span class="service-pill">Social Ads</span>
+        <span class="service-pill">PMax</span>
         <span class="service-pill">CRO</span>
-        <span class="service-pill">Email</span>
         <span class="service-pill">Analytics</span>
         <span class="service-pill">Strategy</span>
       </div>
@@ -949,26 +1166,25 @@
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="section-tag fade-up">How It Works</div>
-  <h2 class="section-h2 fade-up fade-up-d1">From Click to Campaign<br>in Three Steps.</h2>
-
+  <h2 class="section-h2 fade-up fade-up-d1">From First Click to<br>Running Campaign.</h2>
   <div class="how-grid">
     <div class="how-step fade-up fade-up-d1">
       <span class="step-num">01</span>
       <div class="step-icon">📍</div>
       <div class="step-title">Tell Us Where You Are</div>
-      <p class="step-desc">Your market shapes everything — consumer behavior, platform preferences, budget benchmarks. We match your location to the right partner instantly.</p>
+      <p class="step-desc">Your market shapes everything — consumer behavior, platform preferences, budget benchmarks. We match your location to the right Google Ads specialist instantly.</p>
     </div>
     <div class="how-step fade-up fade-up-d2">
       <span class="step-num">02</span>
       <div class="step-icon">🤝</div>
-      <div class="step-title">Meet Your Matched Agency</div>
-      <p class="step-desc">Get introduced to a vetted agency partner who knows your market inside-out — no cold calls, no wasted discovery sessions, just real expertise.</p>
+      <div class="step-title">Meet Your Specialist</div>
+      <p class="step-desc">Get connected with a paid acquisition operator who knows your vertical inside-out — no cold calls, no wasted discovery. Real expertise from day one.</p>
     </div>
     <div class="how-step fade-up fade-up-d3">
       <span class="step-num">03</span>
       <div class="step-icon">🚀</div>
       <div class="step-title">Launch & Scale</div>
-      <p class="step-desc">Your agency gets to work — building campaigns that convert, optimizing with real data, and reporting transparently on every peso and dollar spent.</p>
+      <p class="step-desc">Campaigns built on real conversion data. Every peso and dollar tracked. Transparent reporting. Systematic improvement every month.</p>
     </div>
   </div>
 </section>
@@ -977,72 +1193,154 @@
 <section id="why">
   <div class="section-tag fade-up">Why AD Solutions Inc.</div>
   <h2 class="section-h2 fade-up fade-up-d1">The Network Built<br>on Accountability.</h2>
-
   <div class="why-grid">
     <ul class="why-list">
       <li class="why-item fade-up">
+        <div class="why-icon">✦</div>
+        <div>
+          <div class="why-item-title">Former Google Account Strategist</div>
+          <p class="why-item-desc">Our operator spent years inside Google advising advertisers. That's not a claim most agencies can make — and it shows in how campaigns are built.</p>
+        </div>
+      </li>
+      <li class="why-item fade-up fade-up-d1">
         <div class="why-icon">✦</div>
         <div>
           <div class="why-item-title">Market-Native Expertise</div>
           <p class="why-item-desc">Our partners don't just operate in your market — they live in it. Filipino consumer psychology for PH brands, US market dynamics for American businesses.</p>
         </div>
       </li>
-      <li class="why-item fade-up fade-up-d1">
-        <div class="why-icon">✦</div>
-        <div>
-          <div class="why-item-title">No Generic Playbooks</div>
-          <p class="why-item-desc">Every strategy is built from scratch for your brand, your industry, and your goals. Cookie-cutter campaigns are not in our vocabulary.</p>
-        </div>
-      </li>
       <li class="why-item fade-up fade-up-d2">
         <div class="why-icon">✦</div>
         <div>
-          <div class="why-item-title">Transparent ROI Reporting</div>
-          <p class="why-item-desc">Clear dashboards, honest numbers, and regular reviews. You'll always know exactly what your ad spend is doing — and what it's returning.</p>
+          <div class="why-item-title">Measurement-First Approach</div>
+          <p class="why-item-desc">GA4, server-side tagging, and BigQuery-backed reporting. You'll always know exactly what your ad spend is doing — and what it's returning.</p>
         </div>
       </li>
       <li class="why-item fade-up fade-up-d3">
         <div class="why-icon">✦</div>
         <div>
-          <div class="why-item-title">DA55 Trust Network</div>
-          <p class="why-item-desc">Our domain authority of 55 means real credibility, real backlink power, and a trusted network that compounds value for every partner in our ecosystem.</p>
+          <div class="why-item-title">No Generic Playbooks</div>
+          <p class="why-item-desc">Every campaign strategy is built from your data, your margins, and your market. Cookie-cutter account structures are not how we operate.</p>
         </div>
       </li>
     </ul>
-
     <div class="why-visual fade-up fade-up-d2">
       <div class="why-visual-stat">
-        <div class="num">55</div>
-        <div class="label">Domain Authority Score</div>
+        <div class="num">10+</div>
+        <div class="label">Years Google Ads Experience</div>
       </div>
       <div class="why-visual-divider"></div>
       <div class="why-visual-stat">
-        <div class="num">PH + US</div>
-        <div class="label">Two High-Value Markets</div>
+        <div class="num">$2M+</div>
+        <div class="label">Ad Spend Under Management</div>
       </div>
       <div class="why-visual-divider"></div>
-      <p class="why-visual-quote">"Stop wasting budget on agencies that don't know your market. Find the one that was built for it."</p>
+      <p class="why-visual-quote">"Stop wasting budget on agencies that don't know your market. Find the operator who was built for it."</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATOR PROFILE -->
+<section class="operator" id="operator">
+  <div class="operator-inner">
+    <div class="operator-identity fade-up">
+      <div class="operator-badge">The Operator</div>
+      <div class="operator-name">Hans Lacida</div>
+      <div class="operator-title">Paid Acquisition Systems Operator · Former Google Account Strategist</div>
+      <p class="operator-bio">
+        Hans is a <strong>Google Ads specialist with 10+ years of paid acquisition experience</strong> and a former Google Account Strategist — giving him an inside view of how the platform actually works, not just how it presents itself.
+      </p>
+      <p class="operator-bio">
+        He runs a one-person operation across multiple brands serving <strong>US e-commerce, home services, healthcare, and B2B clients</strong> — building measurement infrastructure, campaign architecture, and performance systems that compound over time rather than chase short-term metrics.
+      </p>
+      <a href="https://hanslacida.com" class="operator-link" target="_blank" rel="noopener">
+        Full Profile at hanslacida.com →
+      </a>
+      <div class="operator-credentials">
+        <div class="cred-block">
+          <div class="cred-block-num">10+</div>
+          <div class="cred-block-label">Years Experience</div>
+        </div>
+        <div class="cred-block">
+          <div class="cred-block-num">Ex</div>
+          <div class="cred-block-label">Google Strategist</div>
+        </div>
+        <div class="cred-block">
+          <div class="cred-block-num">5+</div>
+          <div class="cred-block-label">Verticals Served</div>
+        </div>
+        <div class="cred-block">
+          <div class="cred-block-num">3+</div>
+          <div class="cred-block-label">Years, Zeldigital</div>
+        </div>
+      </div>
+    </div>
+    <div class="operator-brands fade-up fade-up-d2">
+      <a href="https://kaizenstrategy.us" class="brand-row us-brand" target="_blank" rel="noopener">
+        <div class="brand-row-left">
+          <div class="brand-row-tag">US Performance Agency</div>
+          <div class="brand-row-name">Kaizen Strategy</div>
+          <div class="brand-row-url">kaizenstrategy.us</div>
+        </div>
+        <div class="brand-row-market">🇺🇸 US Market</div>
+        <div class="brand-row-arrow">→</div>
+      </a>
+      <a href="https://zeldigital.com" class="brand-row ph-brand" target="_blank" rel="noopener">
+        <div class="brand-row-left">
+          <div class="brand-row-tag">Philippine Digital Agency</div>
+          <div class="brand-row-name">Zel Digital</div>
+          <div class="brand-row-url">zeldigital.com</div>
+        </div>
+        <div class="brand-row-market">🇵🇭 PH Market</div>
+        <div class="brand-row-arrow">→</div>
+      </a>
+      <a href="https://hanslacida.com" class="brand-row personal-brand" target="_blank" rel="noopener">
+        <div class="brand-row-left">
+          <div class="brand-row-tag">Personal Brand · Full Operator Profile</div>
+          <div class="brand-row-name">Hans Lacida</div>
+          <div class="brand-row-url">hanslacida.com</div>
+        </div>
+        <div class="brand-row-market">✦ Operator</div>
+        <div class="brand-row-arrow">→</div>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">AD<span>Solutions</span>Inc.</div>
-  <ul class="footer-links">
-    <li><a href="https://zeldigital.com" target="_blank" rel="noopener">Zel Digital</a></li>
-    <li><a href="https://kaizenstrategy.us" target="_blank" rel="noopener">Kaizen Strategy</a></li>
-    <li><a href="#agencies">Partners</a></li>
-    <li><a href="#how">How It Works</a></li>
-  </ul>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">AD<span>Solutions</span>Inc.</div>
+      <div class="footer-tagline">Performance Advertising Network · US & Philippines</div>
+    </div>
+    <div class="footer-nav">
+      <div class="footer-nav-col">
+        <div class="footer-nav-label">Agency Partners</div>
+        <ul class="footer-links">
+          <li><a href="https://kaizenstrategy.us" target="_blank" rel="noopener"><span class="flag">🇺🇸</span> Kaizen Strategy</a></li>
+          <li><a href="https://zeldigital.com" target="_blank" rel="noopener"><span class="flag">🇵🇭</span> Zel Digital</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav-col">
+        <div class="footer-nav-label">The Operator</div>
+        <ul class="footer-links">
+          <li><a href="https://hanslacida.com" target="_blank" rel="noopener">✦ hanslacida.com</a></li>
+          <li><a href="#services">Google Ads Services</a></li>
+          <li><a href="#agencies">Partner Agencies</a></li>
+          <li><a href="#how">How It Works</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="footer-copy">
-    <span>© 2026 AD Solutions Inc. — adsolutionsincorp.com</span>
-    <span>Powered by <a href="https://hanslacida.com" target="_blank" rel="noopener">hanslacida.com</a> &nbsp;·&nbsp; All rights reserved.</span>
+    <span>© 2026 AD Solutions Inc. · adsolutionsincorp.com</span>
+    <span>Operated by <a href="https://hanslacida.com" target="_blank" rel="noopener">Hans Lacida</a> · All rights reserved.</span>
   </div>
 </footer>
 
 <script>
-  // ── INTERSECTION OBSERVER FOR FADE-UP ──
+  // ── INTERSECTION OBSERVER ──
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1051,16 +1349,17 @@
       }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // ── GEO DETECTION & MODAL ──
+  // ── GEO DETECTION ──
+  // US visitors get modal pointing to Kaizen
+  // PH visitors get modal pointing to Zeldigital
+  // Everyone else stays — page converts them with content
   async function detectAndRedirect() {
     try {
       const res = await fetch('https://ipapi.co/json/');
       const data = await res.json();
       const country = data.country_code;
-
       const modal = document.getElementById('redirectModal');
       const flag = document.getElementById('modalFlag');
       const title = document.getElementById('modalTitle');
@@ -1070,20 +1369,20 @@
       if (country === 'PH') {
         flag.textContent = '🇵🇭';
         title.textContent = 'Welcome, Philippine Business!';
-        desc.textContent = 'We\'ve detected you\'re in the Philippines. Zel Digital is our premier local partner — built for Filipino brands, fluent in the local market, and proven to convert.';
+        desc.textContent = 'You\'re browsing from the Philippines. Zel Digital is our local partner — built for Filipino brands and proven to convert.';
         cta.textContent = 'Visit Zel Digital →';
         cta.href = 'https://zeldigital.com';
         modal.classList.add('active');
       } else if (country === 'US') {
         flag.textContent = '🇺🇸';
-        title.textContent = 'Welcome, US Business!';
-        desc.textContent = 'You\'re browsing from the United States. Kaizen Strategy is your go-to partner — data-driven, conversion-obsessed, and built to scale American brands.';
+        title.textContent = 'Looking for Google Ads Help?';
+        desc.textContent = 'You\'re in the US — Kaizen Strategy is your specialist. Google Ads, Performance Max, and full-funnel conversion tracking for American businesses.';
         cta.textContent = 'Visit Kaizen Strategy →';
         cta.href = 'https://kaizenstrategy.us';
         modal.classList.add('active');
       }
     } catch (e) {
-      // Silent fail — no modal shown if geo lookup fails
+      // Silent fail
     }
   }
 
@@ -1091,13 +1390,12 @@
     document.getElementById('redirectModal').classList.remove('active');
   }
 
-  // Close on backdrop click
   document.getElementById('redirectModal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
   });
 
-  // Delay geo check slightly to let page load
-  setTimeout(detectAndRedirect, 1800);
+  // Slightly longer delay — let them read the hero first
+  setTimeout(detectAndRedirect, 2500);
 </script>
 </body>
 </html>
