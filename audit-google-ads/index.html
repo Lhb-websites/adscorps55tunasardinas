@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Audit Google Ads in 2026 — Complete Step-by-Step Guide</title>
+<meta name="description" content="The complete Google Ads audit guide for 2026. Updated for AI Max, Performance Max, enhanced conversions, Consent Mode V2, DSA deprecation, and every major platform change. By Hans Lacida / ZELDIGITAL.">
+<link rel="canonical" href="https://zeldigital.com/guides/google-ads-audit-2026">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Audit Google Ads in 2026",
+  "description": "A complete step-by-step Google Ads audit framework updated for 2026 — covering AI Max, Performance Max, conversion tracking, Smart Bidding, negative keywords, and attribution.",
+  "totalTime": "PT6H",
+  "author": { "@type": "Person", "name": "Hans Lacida", "url": "https://zeldigital.com", "jobTitle": "Paid Acquisition Systems Operator" },
+  "publisher": { "@type": "Organization", "name": "ZELDIGITAL", "url": "https://zeldigital.com" },
+  "step": [
+    { "@type": "HowToStep", "name": "Conversion Tracking", "text": "Verify primary conversion actions, check for double-firing, enable enhanced conversions and server-side tagging." },
+    { "@type": "HowToStep", "name": "Campaign Structure", "text": "Audit brand vs non-brand separation, PMax asset groups, AI Max readiness, and campaign goal alignment." },
+    { "@type": "HowToStep", "name": "Keyword & Match Type Hygiene", "text": "Review match type strategy, search term waste, negative keyword lists, and DSA deprecation status." },
+    { "@type": "HowToStep", "name": "Smart Bidding & Budget", "text": "Validate bid strategy inputs, tCPA/tROAS targets, learning phase health, and budget pacing rules." },
+    { "@type": "HowToStep", "name": "Performance Max Audit", "text": "Check asset strength ratings, audience signals, brand exclusions, and channel-level performance segmentation." },
+    { "@type": "HowToStep", "name": "Ad Creative & RSAs", "text": "Audit RSA performance ratings, pinning strategy, asset coverage, and brand guideline compliance." },
+    { "@type": "HowToStep", "name": "Audience & First-Party Data", "text": "Verify Customer Match lists, audience signals, consent mode V2 implementation, and remarketing segmentation." },
+    { "@type": "HowToStep", "name": "Attribution & Measurement", "text": "Confirm data-driven attribution, GA4 linkage, incrementality baseline, and enhanced conversions merge readiness." }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --zel: #00C6A7;
+    --gold: #F5C842;
+    --warn: #F97316;
+    --danger: #E24B4A;
+    --bg: #0A0A0A;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #F0EDE8;
+    --muted: #7A7774;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px; line-height: 1.6; overflow-x: hidden;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03; pointer-events: none; z-index: 9999;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center; padding: 6rem 1.5rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg::before {
+    content: ''; position: absolute;
+    top: -10%; left: 50%; transform: translateX(-50%);
+    width: 80%; height: 80%;
+    background: radial-gradient(ellipse, rgba(0,198,167,0.1) 0%, transparent 65%);
+  }
+  .hero-bg::after {
+    content: ''; position: absolute;
+    bottom: 0; right: -5%; width: 40%; height: 50%;
+    background: radial-gradient(ellipse, rgba(245,200,66,0.06) 0%, transparent 70%);
+  }
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 1.75rem; position: relative; z-index: 2; opacity: 0;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 9rem);
+    line-height: 0.88; letter-spacing: 0.02em;
+    position: relative; z-index: 2; opacity: 0;
+  }
+  .hero-title .accent { color: var(--zel); }
+  .hero-title .year {
+    font-size: 0.4em; color: var(--gold);
+    display: block; letter-spacing: 0.15em; padding: 0.25em 0;
+  }
+  .hero-sub {
+    max-width: 600px; margin: 2.25rem auto 0;
+    font-size: 1rem; font-weight: 300; color: var(--muted);
+    position: relative; z-index: 2; opacity: 0; line-height: 1.75;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+  .hero-tags {
+    margin-top: 1.75rem; display: flex; gap: 0.65rem;
+    flex-wrap: wrap; justify-content: center;
+    position: relative; z-index: 2; opacity: 0;
+  }
+  .hero-tag {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    padding: 0.3em 0.85em; border-radius: 100px; border: 1px solid var(--border);
+  }
+  .hero-tag.zel { border-color: rgba(0,198,167,0.3); color: var(--zel); background: rgba(0,198,167,0.07); }
+  .hero-tag.gold { border-color: rgba(245,200,66,0.3); color: var(--gold); background: rgba(245,200,66,0.07); }
+  .hero-tag.warn { border-color: rgba(249,115,22,0.3); color: var(--warn); background: rgba(249,115,22,0.07); }
+  .scroll-cue {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; z-index: 2;
+  }
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%,100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.15); }
+  }
+
+  /* ─── LAYOUT ─── */
+  .section { padding: 5.5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Space Mono', monospace; font-size: 0.63rem;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 4rem); line-height: 0.95; margin-bottom: 2.75rem;
+  }
+  .full-divider { height: 1px; background: var(--border); margin: 0 1.5rem; }
+  .reveal { opacity: 0; transform: translateY(24px); }
+
+  /* ─── AD SLOT ─── */
+  .ad-slot {
+    border: 1px dashed var(--border2); border-radius: 10px;
+    padding: 1.25rem; text-align: center; margin: 1.75rem 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ad-slot span { font-family: 'Space Mono', monospace; font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  .ad-slot-lb { min-height: 90px; }
+  .ad-slot-rect { min-height: 250px; }
+
+  /* ─── NAV ─── */
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;
+  }
+  .nav-label {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
+    margin-right: 0.5rem; flex-shrink: 0;
+  }
+  .nav-link {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    text-decoration: none; padding: 0.3em 0.7em; border-radius: 100px;
+    border: 1px solid transparent; transition: all 0.2s;
+  }
+  .nav-link:hover { color: var(--zel); border-color: rgba(0,198,167,0.3); }
+
+  /* ─── UPDATE BANNER ─── */
+  .update-bar {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 3rem;
+  }
+  .update-item {
+    background: var(--surface); padding: 1.4rem 1.2rem;
+    transition: background 0.3s; position: relative;
+  }
+  .update-item:hover { background: var(--surface2); }
+  .update-item::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .update-item.new::before { background: var(--zel); }
+  .update-item.warn::before { background: var(--warn); }
+  .update-item.danger::before { background: var(--danger); }
+  .update-item.gold::before { background: var(--gold); }
+  .update-badge {
+    font-family: 'Space Mono', monospace; font-size: 0.54rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.2em 0.6em; border-radius: 100px;
+    display: inline-block; margin-bottom: 0.5rem;
+  }
+  .update-badge.new { background: rgba(0,198,167,0.1); color: var(--zel); }
+  .update-badge.warn { background: rgba(249,115,22,0.1); color: var(--warn); }
+  .update-badge.danger { background: rgba(226,75,74,0.1); color: var(--danger); }
+  .update-badge.gold { background: rgba(245,200,66,0.1); color: var(--gold); }
+  .update-title { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 0.3rem; line-height: 1.3; }
+  .update-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+  /* ─── AUDIT STEP ─── */
+  .step-wrap {
+    border: 1.5px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 2rem;
+  }
+  .step-header {
+    display: flex; align-items: center; gap: 1.25rem;
+    padding: 1.75rem 2rem; background: var(--surface);
+    border-bottom: 1px solid var(--border); cursor: pointer;
+    transition: background 0.2s;
+  }
+  .step-header:hover { background: var(--surface2); }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; line-height: 1;
+    color: rgba(0,198,167,0.2); flex-shrink: 0; width: 2.5rem; text-align: center;
+  }
+  .step-header-text { flex: 1; }
+  .step-category {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem;
+  }
+  .step-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--text); line-height: 1; }
+  .step-meta { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+  .step-status { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+  .priority-pill {
+    font-family: 'Space Mono', monospace; font-size: 0.56rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.3em 0.75em; border-radius: 100px; font-weight: 700;
+  }
+  .priority-critical { background: rgba(226,75,74,0.12); color: var(--danger); }
+  .priority-high { background: rgba(249,115,22,0.12); color: var(--warn); }
+  .priority-medium { background: rgba(245,200,66,0.12); color: var(--gold); }
+  .priority-foundation { background: rgba(0,198,167,0.12); color: var(--zel); }
+  .step-toggle { font-family: 'Space Mono', monospace; font-size: 1.1rem; color: var(--zel); transition: transform 0.3s; }
+  .step-body { display: none; padding: 2rem; background: var(--bg); }
+  .step-body.open { display: block; }
+
+  /* ─── CHECKLIST ─── */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.9rem; color: var(--muted); line-height: 1.55; padding: 0.6rem 0.75rem;
+    border-radius: 8px; border: 1px solid transparent; transition: all 0.2s; cursor: pointer;
+  }
+  .checklist li:hover { border-color: var(--border); background: var(--surface); }
+  .checklist li.checked { color: var(--text); border-color: rgba(0,198,167,0.2); background: rgba(0,198,167,0.04); }
+  .checklist li.checked .check-box { background: var(--zel); border-color: var(--zel); }
+  .checklist li.checked .check-box::after { content: '✓'; }
+  .check-box {
+    width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--border2);
+    flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; color: #0A0A0A; font-weight: 700; transition: all 0.2s;
+  }
+  .checklist li strong { color: var(--text); }
+  .checklist li .tag-2026 {
+    font-family: 'Space Mono', monospace; font-size: 0.52rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(245,200,66,0.1); color: var(--gold);
+    padding: 0.15em 0.5em; border-radius: 100px; margin-left: 0.35rem;
+    flex-shrink: 0; align-self: flex-start; margin-top: 3px;
+  }
+  .checklist li .tag-new {
+    font-family: 'Space Mono', monospace; font-size: 0.52rem;
+    background: rgba(0,198,167,0.1); color: var(--zel);
+    padding: 0.15em 0.5em; border-radius: 100px; margin-left: 0.35rem;
+    flex-shrink: 0; align-self: flex-start; margin-top: 3px;
+  }
+  .checklist li .tag-warn {
+    font-family: 'Space Mono', monospace; font-size: 0.52rem;
+    background: rgba(249,115,22,0.1); color: var(--warn);
+    padding: 0.15em 0.5em; border-radius: 100px; margin-left: 0.35rem;
+    flex-shrink: 0; align-self: flex-start; margin-top: 3px;
+  }
+  .checklist li .tag-dead {
+    font-family: 'Space Mono', monospace; font-size: 0.52rem;
+    background: rgba(226,75,74,0.1); color: var(--danger);
+    padding: 0.15em 0.5em; border-radius: 100px; margin-left: 0.35rem;
+    flex-shrink: 0; align-self: flex-start; margin-top: 3px;
+  }
+
+  /* ─── INSIGHT CALLOUT ─── */
+  .callout {
+    border-radius: 10px; padding: 1.2rem 1.4rem; margin: 1.25rem 0;
+    display: flex; gap: 0.9rem; align-items: flex-start;
+  }
+  .callout.zel { background: rgba(0,198,167,0.05); border: 1.5px solid rgba(0,198,167,0.18); }
+  .callout.warn { background: rgba(249,115,22,0.05); border: 1.5px solid rgba(249,115,22,0.18); }
+  .callout.danger { background: rgba(226,75,74,0.05); border: 1.5px solid rgba(226,75,74,0.18); }
+  .callout.gold { background: rgba(245,200,66,0.05); border: 1.5px solid rgba(245,200,66,0.18); }
+  .callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+  .callout-text { font-size: 0.86rem; line-height: 1.65; }
+  .callout.zel .callout-text { color: var(--muted); }
+  .callout.zel .callout-text strong { color: var(--zel); }
+  .callout.warn .callout-text { color: var(--muted); }
+  .callout.warn .callout-text strong { color: var(--warn); }
+  .callout.danger .callout-text { color: var(--muted); }
+  .callout.danger .callout-text strong { color: var(--danger); }
+  .callout.gold .callout-text { color: var(--muted); }
+  .callout.gold .callout-text strong { color: var(--gold); }
+
+  /* ─── STEP PROGRESS ─── */
+  .progress-bar-wrap { margin-bottom: 1.25rem; }
+  .progress-bar-label {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;
+  }
+  .progress-bar-label span { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .progress-bar-label .pct { color: var(--zel); }
+  .progress-outer { height: 4px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+  .progress-inner { height: 100%; background: var(--zel); border-radius: 4px; transition: width 0.4s ease; }
+
+  /* ─── DIFF BLOCKS ─── */
+  .diff-2col {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; margin: 1.25rem 0;
+  }
+  .diff-col { background: var(--surface2); padding: 1.5rem 1.4rem; }
+  .diff-col::before { content: ''; display: block; height: 2px; margin-bottom: 1rem; border-radius: 2px; }
+  .diff-col.old::before { background: var(--danger); }
+  .diff-col.new-way::before { background: var(--zel); }
+  .diff-label { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; margin-bottom: 0.75rem; }
+  .diff-col.old .diff-label { color: var(--danger); }
+  .diff-col.new-way .diff-label { color: var(--zel); }
+  .diff-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .diff-list li { font-size: 0.84rem; color: var(--muted); padding-left: 1.1rem; position: relative; line-height: 1.5; }
+  .diff-col.old .diff-list li::before { content: '✗'; position: absolute; left: 0; color: var(--danger); font-size: 0.7rem; top: 2px; }
+  .diff-col.new-way .diff-list li::before { content: '✓'; position: absolute; left: 0; color: var(--zel); font-size: 0.7rem; top: 2px; }
+  .diff-list li strong { color: var(--text); }
+
+  /* ─── TIMELINE ─── */
+  .timeline { display: flex; flex-direction: column; gap: 0; margin: 1.25rem 0; }
+  .tl-item { display: flex; gap: 1.2rem; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .tl-line { width: 1px; flex: 1; background: var(--border); margin: 4px 0; min-height: 24px; }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-content { padding-bottom: 1.25rem; }
+  .tl-date { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .tl-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+  .tl-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  /* ─── STAT STRIP ─── */
+  .stat-strip {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 3rem;
+  }
+  .stat-item { background: var(--surface); padding: 1.6rem 1.2rem; text-align: center; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; color: var(--zel); margin-bottom: 0.3rem; }
+  .stat-num.gold { color: var(--gold); }
+  .stat-label { font-family: 'Space Mono', monospace; font-size: 0.56rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); line-height: 1.5; }
+
+  /* ─── SCORE CARD ─── */
+  .score-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1.75rem;
+  }
+  .score-item { background: var(--surface2); padding: 1.25rem 1rem; text-align: center; transition: background 0.3s; }
+  .score-item:hover { background: #1c1c1c; }
+  .score-zone { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; line-height: 1; margin-bottom: 0.3rem; }
+  .score-zone.critical { color: var(--danger); }
+  .score-zone.needs-work { color: var(--warn); }
+  .score-zone.healthy { color: var(--gold); }
+  .score-zone.elite { color: var(--zel); }
+  .score-label { font-family: 'Space Mono', monospace; font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); line-height: 1.5; }
+
+  /* ─── CTA ─── */
+  .cta-block {
+    background: rgba(0,198,167,0.04); border: 1.5px solid rgba(0,198,167,0.2);
+    border-radius: 14px; padding: 2.5rem;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 2rem; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-block::before {
+    content: 'AUDIT'; position: absolute; right: 2rem; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif; font-size: 6rem;
+    color: rgba(0,198,167,0.04); letter-spacing: 0.1em; pointer-events: none;
+  }
+  .cta-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--zel); margin-bottom: 0.5rem; }
+  .cta-heading { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; margin-bottom: 0.6rem; }
+  .cta-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+  .cta-desc strong { color: var(--text); }
+  .btn-group { display: flex; flex-direction: column; gap: 0.75rem; position: relative; z-index: 1; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.85rem 1.75rem; border-radius: 8px;
+    font-family: 'Space Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.1em; font-weight: 700; text-transform: uppercase;
+    text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; white-space: nowrap;
+  }
+  .btn-zel { background: var(--zel); color: #0A0A0A; }
+  .btn-zel:hover { background: #00E0BC; box-shadow: 0 0 28px rgba(0,198,167,0.4); transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--muted); border: 1.5px solid var(--border); }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); color: var(--text); transform: translateY(-2px); }
+
+  /* ─── OVERALL PROGRESS ─── */
+  .global-score {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 1.5rem 2rem; margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .global-score-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; color: var(--zel); flex-shrink: 0; }
+  .global-score-text { flex: 1; }
+  .global-score-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  .global-score-bar { height: 6px; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; margin-top: 0.5rem; }
+  .global-score-fill { height: 100%; background: var(--zel); border-radius: 6px; transition: width 0.5s; }
+
+  /* ─── HOW-TO GRID ─── */
+  .how-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 3rem;
+  }
+  .how-item { background: var(--surface); padding: 2rem 1.6rem; transition: background 0.3s; position: relative; }
+  .how-item:hover { background: var(--surface2); }
+  .how-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--zel); opacity: 0.4; }
+  .how-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; color: rgba(0,198,167,0.12); margin-bottom: 0.75rem; }
+  .how-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--text); margin-bottom: 0.5rem; }
+  .how-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
+  .how-desc strong { color: var(--text); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 3rem 1.5rem; text-align: center;
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--zel); }
+  .footer-cta { margin-top: 1rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .update-bar { grid-template-columns: 1fr 1fr; }
+    .stat-strip { grid-template-columns: 1fr 1fr; }
+    .score-grid { grid-template-columns: 1fr 1fr; }
+    .how-grid { grid-template-columns: 1fr; }
+    .diff-2col { grid-template-columns: 1fr; }
+    .cta-block { grid-template-columns: 1fr; }
+    .cta-block::before { display: none; }
+    .sticky-nav { display: none; }
+    .step-header { padding: 1.25rem; }
+    .step-body { padding: 1.25rem; }
+    .global-score { flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    .section { padding: 3.5rem 1rem; }
+    .update-bar { grid-template-columns: 1fr; }
+    .stat-strip { grid-template-columns: 1fr; }
+    .score-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <p class="eyebrow">ZELDIGITAL · Operator Guide · Google Ads</p>
+  <h1 class="hero-title">
+    How To<br><span class="accent">Audit</span><br>Google Ads
+    <span class="year">2026 Edition</span>
+  </h1>
+  <p class="hero-sub">
+    Eight steps. Every critical area. Updated for <strong>AI Max, Performance Max, enhanced conversions merge, Consent Mode V2, DSA deprecation,</strong> and everything Google shipped in 2025–2026.
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag zel">AI Max</span>
+    <span class="hero-tag zel">Performance Max</span>
+    <span class="hero-tag gold">2026 Updated</span>
+    <span class="hero-tag warn">DSA Deprecated</span>
+    <span class="hero-tag">~6 Hours Full Audit</span>
+  </div>
+  <div class="scroll-cue">
+    <span>Start Auditing</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── STICKY NAV ─── -->
+<nav class="sticky-nav">
+  <span class="nav-label">Jump to</span>
+  <a href="#tracking" class="nav-link">01 Tracking</a>
+  <a href="#structure" class="nav-link">02 Structure</a>
+  <a href="#keywords" class="nav-link">03 Keywords</a>
+  <a href="#bidding" class="nav-link">04 Bidding</a>
+  <a href="#pmax" class="nav-link">05 PMax</a>
+  <a href="#creative" class="nav-link">06 Creative</a>
+  <a href="#audiences" class="nav-link">07 Audiences</a>
+  <a href="#attribution" class="nav-link">08 Attribution</a>
+</nav>
+
+<!-- ═══ AD SLOT ═══ -->
+<div style="max-width:1100px; margin:0 auto; padding:0 1.5rem;">
+  <div class="ad-slot ad-slot-lb"><span>Advertisement · 728×90 leaderboard</span></div>
+</div>
+
+<!-- ═══ 2026 UPDATES ═══ -->
+<section class="section" style="padding-top:1rem;">
+  <p class="section-label reveal">What Changed in 2025–2026</p>
+  <h2 class="section-title reveal">Read These First.<br>Then Audit.</h2>
+  <div class="update-bar reveal">
+    <div class="update-item new">
+      <span class="update-badge new">New · 2026</span>
+      <div class="update-title">AI Max for Search</div>
+      <div class="update-desc">Replaces DSA logic. Expands query matching beyond traditional keywords. Requires tighter brand exclusions and negative keyword discipline — or it will match anything.</div>
+    </div>
+    <div class="update-item gold">
+      <span class="update-badge gold">Merged · April 2026</span>
+      <div class="update-title">Enhanced Conversions — One Switch</div>
+      <div class="update-desc">Web and lead enhanced conversions merged into a single on/off toggle. Accepts tag + API simultaneously. If you haven't enabled this, your Smart Bidding is flying half-blind.</div>
+    </div>
+    <div class="update-item warn">
+      <span class="update-badge warn">Action Required</span>
+      <div class="update-title">DSA Auto-Upgrade to AI Max</div>
+      <div class="update-desc">Starting September 2026, legacy DSA campaigns auto-upgrade to AI Max. Audit now. DSA-heavy accounts need a migration plan — not a surprise migration.</div>
+    </div>
+    <div class="update-item danger">
+      <span class="update-badge danger">Deprecated</span>
+      <div class="update-title">Call-Only Ads — Dead</div>
+      <div class="update-desc">No new call-only ads since February 2026. Stop serving February 2027. Migrate to RSAs with call assets now. eCPC is also largely deprecated — stop using it.</div>
+    </div>
+  </div>
+
+  <!-- 2026 TIMELINE -->
+  <p class="section-label reveal" style="margin-bottom:1rem;">Key 2026 Platform Changes Timeline</p>
+  <div class="timeline reveal">
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--zel);box-shadow:0 0 8px var(--zel);"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-date" style="color:var(--zel);">January 2026</div><div class="tl-title">Ads Advisor Launched + 24/7 Security Monitoring</div><div class="tl-desc">Proactive troubleshooting and policy violation detection inside Google Ads. Check if your account has outstanding Ads Advisor alerts.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--warn);box-shadow:0 0 8px var(--warn);"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-date" style="color:var(--warn);">February 2026</div><div class="tl-title">Call-Only Ads — No New Campaigns</div><div class="tl-desc">New call-only campaigns blocked. Existing ones keep running until February 2027. Migrate to RSAs + call assets immediately.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--gold);box-shadow:0 0 8px var(--gold);"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-date" style="color:var(--gold);">April 2026</div><div class="tl-title">Enhanced Conversions — Unified Toggle + Asset Experiments in PMax</div><div class="tl-desc">Web and lead enhanced conversions merged into one setting. Asset-level A/B experiments now available inside Performance Max — a major transparency upgrade.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--zel);"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-date" style="color:var(--zel);">June 2026</div><div class="tl-title">GA4 Consent Mode Split — ad_storage Controls Ads Data Only</div><div class="tl-desc">From June 15, Google Ads data relies solely on ad_storage consent. Denying ad_storage blocks Ads from user identifiers. Consent mode V2 implementation is now non-negotiable.</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot" style="background:var(--danger);box-shadow:0 0 8px var(--danger);"></div><div class="tl-line"></div></div>
+      <div class="tl-content"><div class="tl-date" style="color:var(--danger);">September 2026</div><div class="tl-title">DSA Auto-Upgrades to AI Max</div><div class="tl-desc">Legacy Dynamic Search Ads campaigns will be force-upgraded. Plan your migration now — don't let Google do it unsupervised.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ═══ HOW TO USE ═══ -->
+<section class="section">
+  <p class="section-label reveal">Before You Start</p>
+  <h2 class="section-title reveal">How To Use<br>This Guide.</h2>
+  <div class="how-grid reveal">
+    <div class="how-item">
+      <div class="how-num">01</div>
+      <h3 class="how-title">Get Access First</h3>
+      <p class="how-desc">You need <strong>Google Ads (admin), GA4 (editor), Google Tag Manager, and Merchant Center</strong> (if e-commerce). Without full access, you're auditing blind. Also pull last 90 days of data as your baseline.</p>
+    </div>
+    <div class="how-item">
+      <div class="how-num">02</div>
+      <h3 class="how-title">Work the Steps In Order</h3>
+      <p class="how-desc"><strong>Tracking always goes first.</strong> If your measurement is broken, every other finding is meaningless — you'll be optimizing against wrong signals. Fix tracking, then audit structure, then bidding.</p>
+    </div>
+    <div class="how-item">
+      <div class="how-num">03</div>
+      <h3 class="how-title">Score as You Go</h3>
+      <p class="how-desc">Check off each item as you verify it. Each step has a <strong>priority rating</strong> — fix Critical and High issues before anything else. Unchecked items become your action plan, not a PDF that gets shelved.</p>
+    </div>
+  </div>
+
+  <!-- OVERALL SCORE TRACKER -->
+  <div class="global-score reveal" id="global-score-box">
+    <div class="global-score-num" id="global-pct">0%</div>
+    <div class="global-score-text">
+      <div class="global-score-label">Audit Progress · <span id="global-count">0</span> of <span id="global-total">0</span> items checked</div>
+      <div id="global-status" style="font-size:0.85rem;color:var(--muted);margin-top:0.3rem;">Check items as you audit to track progress.</div>
+      <div class="global-score-bar"><div class="global-score-fill" id="global-fill" style="width:0%;"></div></div>
+    </div>
+  </div>
+
+  <div class="score-grid reveal">
+    <div class="score-item"><div class="score-zone critical">0–25%</div><div class="score-label">Critical<br>Fix Now</div></div>
+    <div class="score-item"><div class="score-zone needs-work">26–50%</div><div class="score-label">Needs<br>Work</div></div>
+    <div class="score-item"><div class="score-zone healthy">51–75%</div><div class="score-label">Healthy<br>Optimize</div></div>
+    <div class="score-item"><div class="score-zone elite">76–100%</div><div class="score-label">Elite<br>Account</div></div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ═══ AUDIT STEPS ═══ -->
+<section class="section">
+  <p class="section-label reveal">The 8-Step Framework</p>
+  <h2 class="section-title reveal">Run The Audit.</h2>
+
+  <!-- AD SLOT mid-content -->
+  <div class="ad-slot ad-slot-rect reveal"><span>Advertisement · 300×250 rectangle</span></div>
+
+  <!-- ─── STEP 1: CONVERSION TRACKING ─── -->
+  <div class="step-wrap reveal" id="tracking">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num">01</div>
+      <div class="step-header-text">
+        <div class="step-category">Foundation — Do This First</div>
+        <div class="step-title">Conversion Tracking</div>
+        <div class="step-meta">If this is wrong, everything else is a waste of time · ~60 min</div>
+      </div>
+      <div class="step-status">
+        <span class="priority-pill priority-critical">Critical</span>
+        <span class="step-toggle">+</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="callout danger"><div class="callout-icon">⚠</div><div class="callout-text"><strong>The #1 problem in Google Ads audits:</strong> accounts that look fine but are optimizing against the wrong signal. Soft conversions (page views, scroll depth, add-to-cart) set as primary conversions will train Smart Bidding to find more of those — not buyers. Fix this before touching anything else.</div></div>
+      <ul class="checklist" id="cl-1">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Primary conversion is revenue-correlated only</strong> — purchase, lead form submit, booked call, or phone lead. Nothing softer.<span class="tag-dead">2026 Rule</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Secondary conversions are set to "observation only"</strong> — page views, add-to-cart, time on site. They inform; they don't drive bidding.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>No duplicate conversions</strong> — verify GA4 event and Google Ads tag are NOT both counting the same action as primary. Cross-reference Ads conversion count vs. backend order count for same 30-day period.<span class="tag-warn">Common Bug</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Thank-you page tag fires once, on correct URL</strong> — use Tag Assistant to verify. It should fire exactly once per conversion, not on every page load.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Enhanced conversions — unified toggle enabled</strong> — as of April 2026, web and lead enhanced conversions are one setting. Turn it on. Accepts both tag and API data simultaneously.<span class="tag-2026">April 2026</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Server-side conversion API active or on the roadmap</strong> — client-side tags miss 15–40% of conversions due to browser blocking and ITP. Server-side is the 2026 standard.<span class="tag-new">Best Practice</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>UTM parameters consistent across 10–20 destination URLs</strong> — check that auto-tagging isn't conflicting with manual UTMs. Inconsistencies break cross-channel attribution.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Phone call conversions use a real conversion event</strong> — not just a click-to-call. CallTrackingMetrics, CallRail, or Google's forwarding number is required for real call tracking.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Offline conversion import (OCI) set up if you have a sales cycle</strong> — lead gen businesses must close the loop by importing CRM-qualified leads back into Google Ads.<span class="tag-2026">2026 Priority</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Consent Mode V2 implemented</strong> — from June 2026, ad_storage consent controls Ads data independently of GA4. Non-compliance = lost signal for Smart Bidding in GDPR markets.<span class="tag-warn">June 2026</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Conversion window matches your sales cycle</strong> — 30-day click window is default. If your sales cycle is 90 days, extend it. If it's 24 hours (impulse purchase), shorten it.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Data-driven attribution selected</strong> — last-click is legacy. DDA uses all touchpoints. Only revert to last-click if you have fewer than 300 conversions/month and DDA is unstable.<span class="tag-2026">2026 Standard</span></span></li>
+      </ul>
+      <div class="callout zel"><div class="callout-icon">→</div><div class="callout-text"><strong>Quick sanity check:</strong> Pull 30-day conversion count from Google Ads. Pull order/lead count from your CRM or Shopify for the same period. If Ads shows 2× more conversions, you have a double-firing or weak-signal problem. Fix this before step 2.</div></div>
+    </div>
+  </div>
+
+  <!-- ─── STEP 2: CAMPAIGN STRUCTURE ─── -->
+  <div class="step-wrap reveal" id="structure">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num">02</div>
+      <div class="step-header-text">
+        <div class="step-category">Architecture</div>
+        <div class="step-title">Campaign Structure</div>
+        <div class="step-meta">Brand vs. non-brand · AI Max · DSA migration · ~45 min</div>
+      </div>
+      <div class="step-status">
+        <span class="priority-pill priority-critical">Critical</span>
+        <span class="step-toggle">+</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="callout warn"><div class="callout-icon">⚠</div><div class="callout-text"><strong>2026 structural shift:</strong> The old keyword-first architecture is being replaced by intent-signal architecture. AI Max and PMax both require you to think in terms of <strong>inputs to the algorithm</strong> (assets, audiences, negative lists, brand exclusions) rather than a tightly controlled keyword list.</div></div>
+      <ul class="checklist" id="cl-2">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Brand campaign is separated from non-brand</strong> — mixing them inflates apparent ROAS. Brand traffic converts cheap and makes non-brand look worse. Always separate.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Brand terms excluded from PMax and AI Max campaigns</strong> — PMax will steal brand traffic and attribute conversions to itself. Add brand exclusions at account level.<span class="tag-2026">Critical PMax Rule</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Campaign goals align with actual business KPIs</strong> — a lead gen campaign set to "maximize clicks" will get clicks. A revenue campaign set to "maximize conversions" (not value) will find cheap conversions, not high-value ones.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>DSA campaigns audited for AI Max migration readiness</strong> — DSAs auto-upgrade to AI Max in September 2026. Audit now: what queries are your DSAs matching? Do you have a negative list ready?<span class="tag-warn">Sept 2026 Deadline</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>AI Max — brand exclusions and URL restrictions configured</strong> — AI Max can generate ad copy from your site and match to expanded queries. Without guardrails, it will go off-brand and off-target.<span class="tag-new">AI Max</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Call-only campaigns flagged for RSA migration</strong> — new call-only ads blocked since February 2026. Stop serving February 2027. Transition to RSAs + call assets now.<span class="tag-dead">Deprecated</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>eCPC bid strategy removed from all campaigns</strong> — largely deprecated in 2026. Replace with tCPA, tROAS, or Maximize Conversions depending on your conversion volume.<span class="tag-dead">Deprecated</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Campaigns limited by budget are not running Smart Bidding</strong> — a throttled budget starves the algorithm of impressions and data. Either increase budget or switch to manual/tCPA with lower targets.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Ad schedule is set intentionally</strong> — from June 2026, budget pacing changes to target monthly limit (30.4× daily budget) regardless of schedule. Active schedule days still matter for when ads show.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Geographic targeting matches your actual service area</strong> — review geo reports. "People in or regularly in" vs. "People searching for" is a common misconfiguration for local service businesses.</span></li>
+      </ul>
+      <div class="diff-2col">
+        <div class="diff-col old"><div class="diff-label">Old 2019–2023 Structure</div><ul class="diff-list"><li>Exact match keyword control at campaign level</li><li>DSA as catch-all for long-tail</li><li>Manual bids or eCPC</li><li>Brand and non-brand mixed together</li><li>Campaign per keyword theme</li></ul></div>
+        <div class="diff-col new-way"><div class="diff-label">2026 Signal Architecture</div><ul class="diff-list"><li>Inputs to AI: assets, audiences, negative lists</li><li>AI Max or PMax with tight guardrails</li><li>Smart Bidding with clean conversion signal</li><li><strong>Always separate brand from non-brand</strong></li><li>Campaign per <strong>margin band or product category</strong></li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── STEP 3: KEYWORDS ─── -->
+  <div class="step-wrap reveal" id="keywords">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num">03</div>
+      <div class="step-header-text">
+        <div class="step-category">Query Control</div>
+        <div class="step-title">Keywords & Negatives</div>
+        <div class="step-meta">Search term waste · match type discipline · negative lists · ~60 min</div>
+      </div>
+      <div class="step-status">
+        <span class="priority-pill priority-high">High</span>
+        <span class="step-toggle">+</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="callout warn"><div class="callout-icon">⚠</div><div class="callout-text"><strong>2026 reality:</strong> Exact match isn't exact. Phrase match isn't phrase. Google's intent-matching means match types are now inputs into a signal system — not precision filters. Your negative keyword list is your primary defence against waste.</div></div>
+      <ul class="checklist" id="cl-3">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Account-level negative keyword list exists with 1,000 entries max</strong> — brand terms on non-brand campaigns, irrelevant product categories, and known junk queries. This is your first line of defence.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Search term report reviewed in last 14 days</strong> — pull 90 days. Sort by cost. Find queries that spent money but drove zero conversions. Add them as negatives immediately.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Competitor brand terms are intentional</strong> — either you're bidding on competitors (and that's a deliberate strategy with a dedicated campaign) or you're not, and they're blocked as negatives.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Informational queries excluded</strong> — "how to", "free", "DIY", "what is", "YouTube tutorial for" should be negatives unless you're running awareness campaigns targeting them intentionally.<span class="tag-warn">Waste Alert</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Broad match keywords have a negative list backing them</strong> — never run broad match without a managed negative list. Broad match + no negatives = wasted spend at scale.<span class="tag-2026">Non-Negotiable</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Low-performing keywords paused or removed</strong> — keywords with 100+ clicks and zero conversions in 90 days. Either the keyword is irrelevant or the landing page is broken.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Quality Score below 5 flagged for repair</strong> — QS 7+ is healthy. Below 5 signals ad relevance, expected CTR, or landing page experience issues. Don't just add negatives — fix the ad.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>AI Max search theme list reviewed</strong> — search themes in AI Max act like broad match signals. Audit what themes are active. Are they aligned with your actual intent?<span class="tag-new">AI Max</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Negative keywords applied to Display and PMax</strong> — display targeting uses content matching, not keywords — but placement exclusions and topic negatives matter. PMax now accepts account-level negatives via the UI.<span class="tag-2026">PMax UI Change</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Single keyword ad groups (SKAGs) removed</strong> — SKAGs were built for a world where match types worked like filters. They're outdated. Consolidate into theme-based ad groups with 5–15 keywords.</span></li>
+      </ul>
+      <div class="callout zel"><div class="callout-icon">→</div><div class="callout-text"><strong>Operator tip from Hans:</strong> Sort your search term report by spend descending, filter for zero conversions. The top 20 rows will often reveal 15–30% of your budget going to garbage. This is the fastest single fix in most accounts. Add those terms as exact negatives before anything else.</div></div>
+    </div>
+  </div>
+
+  <!-- ─── STEP 4: SMART BIDDING ─── -->
+  <div class="step-wrap reveal" id="bidding">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num">04</div>
+      <div class="step-header-text">
+        <div class="step-category">Bid Strategy</div>
+        <div class="step-title">Smart Bidding & Budget</div>
+        <div class="step-meta">tCPA · tROAS · learning phase · budget pacing · ~45 min</div>
+      </div>
+      <div class="step-status">
+        <span class="priority-pill priority-high">High</span>
+        <span class="step-toggle">+</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="callout gold"><div class="callout-icon">→</div><div class="callout-text"><strong>Smart Bidding is a contract.</strong> You give it clean conversion data, a realistic target, and enough budget to operate. It finds the conversions. Break any part of that contract — bad data, aspirational ROAS, throttled budget — and it fails. <strong>The algorithm isn't wrong. The inputs are.</strong></div></div>
+      <ul class="checklist" id="cl-4">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Every campaign has a bid strategy appropriate to its goal</strong> — lead gen: tCPA or Maximize Conversions. E-commerce with margin data: tROAS or Maximize Conversion Value. Brand: Target Impression Share or Manual. Awareness: Maximize Clicks (only acceptable here).</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>tCPA and tROAS targets are based on historical data — not aspirational guesses</strong> — pull 90-day average CPA. Set tCPA no lower than 20% below that. Setting it 50% below actual performance starves the algorithm.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Smart Bidding campaigns have 30+ conversions in past 30 days</strong> — below this, the algorithm has insufficient data. Use Maximize Conversions (no target) until you hit the threshold, then layer in tCPA.<span class="tag-2026">Minimum Signal</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Campaigns are not stuck in learning phase</strong> — check the status column. "Learning" for more than 7 days indicates conversion signal issues, budget throttling, or recent structural changes resetting the model.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Maximize Clicks is not used on conversion campaigns</strong> — this strategy optimizes for traffic volume, not quality. Only acceptable for new brand campaigns with no conversion history or pure awareness.<span class="tag-dead">Legacy Setting</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>eCPC (enhanced CPC) removed from all campaigns</strong> — deprecated in 2026. It's a half-manual, half-automated hybrid that underperforms both manual and full Smart Bidding. Remove it.<span class="tag-dead">Deprecated</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Conversion value rules are used if you have different customer segments</strong> — weight high-LTV customers, high-margin products, or new vs. returning customers differently. This tells Smart Bidding what to actually optimize for.<span class="tag-new">2026 Best Practice</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Budget pacing change acknowledged — June 2026</strong> — from June 1, pacing targets monthly limit (30.4× daily) instead of active schedule days. Budgets may pace differently. Monitor daily spend closely after this change.<span class="tag-warn">June 2026</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Bid strategy experiments are documented</strong> — if you're testing tCPA vs. Maximize Conversions, the experiment needs a hypothesis, start date, end date, and success metric. Undocumented experiments teach you nothing.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Shared budgets reviewed</strong> — shared budgets can cause one campaign to starve another. Review which campaigns share budgets and whether that allocation is intentional.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ─── STEP 5: PMAX ─── -->
+  <div class="step-wrap reveal" id="pmax">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num">05</div>
+      <div class="step-header-text">
+        <div class="step-category">Automated Campaigns</div>
+        <div class="step-title">Performance Max Audit</div>
+        <div class="step-meta">Asset groups · audience signals · brand exclusions · channel segmentation · ~90 min</div>
+      </div>
+      <div class="step-status">
+        <span class="priority-pill priority-high">High</span>
+        <span class="step-toggle">+</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="callout warn"><div class="callout-icon">⚠</div><div class="callout-text"><strong>PMax in 2026:</strong> More transparent than before (asset experiments now live, better channel reporting), but still a fog machine without the right inputs. The four changes that recover 10–20% of PMax spend: account-level brand exclusions, search term insights review cadence, asset group naming convention, and a dedicated campaign per product margin band.</div></div>
+      <ul class="checklist" id="cl-5">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Asset group Ad Strength is "Excellent" or "Good"</strong> — "Poor" or "Average" rated asset groups actively drag campaign performance. Replace low-rated assets immediately. "Low" rated assets don't just underperform — they penalize.<span class="tag-2026">Direct Impact</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Full asset coverage across all types</strong> — minimum: 5 headlines, 5 descriptions, 5 images (landscape + square + portrait), 1 logo, 1 video. Missing video? Google auto-generates one. It will be off-brand.<span class="tag-warn">Critical</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Asset group experiments set up</strong> — as of April 2026, you can now A/B test assets inside PMax. Use this. It's the first real creative testing capability PMax has had.<span class="tag-new">April 2026</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Audience signals include Customer Match list</strong> — upload your existing customer list. This is the single highest-quality audience signal you can give PMax. Refresh it at least monthly.<span class="tag-2026">Non-Negotiable</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Audience signals include high-LTV converters segment — not just "all visitors"</strong> — "all website visitors" is a weak signal. Segment by purchase history, AOV, or product category. Give PMax your best customers, not everyone.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Brand exclusions configured at account level</strong> — PMax will cannibalize your brand search traffic and attribute those conversions to itself. Block brand terms. Dedicated brand Search campaign captures that traffic cheaper.<span class="tag-2026">Must Do</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>PMax is NOT mixing all products in one campaign</strong> — segment by product margin band or category. A PMax campaign mixing $20 products with $2,000 products will optimize toward volume, not revenue.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Final URLs are controlled — not drifting to weak pages</strong> — check URL expansion settings. By default, PMax can send traffic to any page on your site. Lock it to your best-converting landing pages unless you've explicitly audited URL performance.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Channel-level performance segmented via Insights or MCC API</strong> — PMax blends Search, Display, YouTube, Gmail, Discovery. Pull channel breakdown from the Insights report. If Display is at $95 CPA and Search is at $30 CPA, the blended number is hiding the waste.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Brand guidelines are applied to PMax campaigns</strong> — auto-migrated by October 2025 for existing campaigns. Verify your brand colors, fonts, and logo are correctly set and haven't been overwritten.<span class="tag-2026">Post-Migration Check</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Your Data Exclusions feature reviewed</strong> — new in 2026: you can exclude specific first-party segments from PMax targeting. Use this to exclude current customers from acquisition campaigns if your goal is new customer revenue only.<span class="tag-new">New 2026</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>AI-generated assets reviewed for brand voice accuracy</strong> — Google's AI can generate ad copy from your site. Review it. It often pulls from FAQ pages or footer text. Approve only what's on-brand and accurate.</span></li>
+      </ul>
+      <div class="callout zel"><div class="callout-icon">→</div><div class="callout-text"><strong>Hans's PMax rule:</strong> PMax is only as good as your conversion signal quality. If it's optimizing toward junk leads because your tracking is misconfigured, it will scale junk leads. Step 1 is not optional. Fix tracking, then give PMax the right audience inputs. In that order.</div></div>
+    </div>
+  </div>
+
+  <!-- ─── STEP 6: CREATIVE ─── -->
+  <div class="step-wrap reveal" id="creative">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num">06</div>
+      <div class="step-header-text">
+        <div class="step-category">Ad Creative</div>
+        <div class="step-title">RSAs, Assets & Ad Copy</div>
+        <div class="step-meta">RSA performance ratings · pinning strategy · asset coverage · ~45 min</div>
+      </div>
+      <div class="step-status">
+        <span class="priority-pill priority-medium">Medium</span>
+        <span class="step-toggle">+</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <ul class="checklist" id="cl-6">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Every active ad group has at least one RSA</strong> — Expanded Text Ads (ETAs) have been deprecated since June 2022. If you still have ETAs only in an ad group, add an RSA immediately.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>RSA ad strength is "Good" or "Excellent"</strong> — "Average" or "Poor" rated RSAs signal weak asset variety, repetitive headlines, or missing assets. Google reduces impression share for low-rated ads.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Pinning is used sparingly and intentionally</strong> — pinning locks a headline into a position, reducing Google's ability to test combinations. Only pin when legally or compliance-required. Too many pins = lower reach.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>15 headlines and 4 descriptions filled per RSA</strong> — max capacity. Fewer assets = fewer combinations = lower Ad Strength. Every slot should be a genuinely different message angle.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Best-performing asset combinations identified</strong> — use the "Combinations" report inside RSA performance. What headlines and descriptions Google is actually pairing. Double down on what's working.<span class="tag-2026">2026 Report</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>All available ad assets (extensions) are active</strong> — sitelinks, callouts, structured snippets, call, lead form, price, promotion, image. Missing assets = smaller ad real estate = lower CTR = higher effective CPC. Full assets can improve CTR 10–15%.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Real-time policy review — Real-Time Policy Reviews enabled</strong> — as of April 2026, RSAs get instant policy feedback during creation (seconds vs. hours). Check your ads aren't waiting hours on policy review when this feature can clear them instantly.<span class="tag-new">April 2026</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Ad copy includes specific numbers, proof points, and calls to action</strong> — generic ads ("We're the best!") lose to specific ads ("53% lower CPA in 60 days — free audit"). Review headlines for specificity.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>AI-generated copy reviewed for brand voice compliance</strong> — Google's text customization tools can now receive brand voice guidelines. Configure this. Review any AI-suggested copy before enabling.<span class="tag-new">2025–2026</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Ads reference the Search Partner Network performance report</strong> — Google released partner-level impression data in 2025 (in Report Editor under Content Suitability). Check if Search Partner traffic is performing or drag down your averages.<span class="tag-new">2025 Feature</span></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ─── STEP 7: AUDIENCES ─── -->
+  <div class="step-wrap reveal" id="audiences">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num">07</div>
+      <div class="step-header-text">
+        <div class="step-category">First-Party Data</div>
+        <div class="step-title">Audiences & Customer Data</div>
+        <div class="step-meta">Customer Match · remarketing · consent mode · lookalikes · ~45 min</div>
+      </div>
+      <div class="step-status">
+        <span class="priority-pill priority-high">High</span>
+        <span class="step-toggle">+</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="callout gold"><div class="callout-icon">→</div><div class="callout-text"><strong>2026 reality:</strong> Third-party audience signals are degrading. First-party data — your customer list, CRM data, and consented website behaviour — is now the primary competitive moat. Accounts feeding rich first-party data to Smart Bidding outperform accounts relying on Google's default audience targeting.</div></div>
+      <ul class="checklist" id="cl-7">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Customer Match list uploaded and refreshed monthly</strong> — this is the highest-quality audience signal available. Your hashed email list tells Google exactly who your best customers are. Stale lists over 90 days old lose match rate.<span class="tag-2026">Top Priority</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Remarketing audiences are segmented — not just "all visitors"</strong> — separate: purchased, abandoned cart, visited product page, visited blog only. Each segment has different intent and value. Don't bid the same on all of them.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>High-LTV customer segment built and uploaded</strong> — if you have CRM data, export your top 20% of customers by lifetime value and upload as a Customer Match list. Give Smart Bidding a picture of who to find more of.<span class="tag-new">First-Party Moat</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Audience signals in PMax asset groups include converters segment</strong> — don't lump all remarketing into one signal. Converters, high-LTV, and product page visitors should each be separate signals in separate asset groups if volume allows.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Consent Mode V2 implemented and verified</strong> — from June 15, 2026, ad_storage consent controls Ads data independently. Denying = Smart Bidding loses user identifiers beyond URL data. This affects audiences, attribution, and bidding signal quality.<span class="tag-warn">June 2026</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>GA4 properly linked to Google Ads and passing audience data</strong> — GA4 audiences (engaged users, purchasers, high-value segments) should be available in Google Ads audience manager. A disconnected GA4 = missing audience data for both targeting and Smart Bidding.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Your Data Exclusions reviewed in PMax</strong> — new in 2026: exclude existing customers from PMax to focus acquisition spend only on new users. Crucial if your goal is new customer revenue, not repeat purchase volume.<span class="tag-new">New 2026</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Low-performing audience segments identified and excluded or adjusted</strong> — review audience performance in Search campaigns (observation mode). If a segment has 10× worse CPA, exclude it or add a negative bid adjustment.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ─── STEP 8: ATTRIBUTION ─── -->
+  <div class="step-wrap reveal" id="attribution">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-num">08</div>
+      <div class="step-header-text">
+        <div class="step-category">Measurement</div>
+        <div class="step-title">Attribution & Incrementality</div>
+        <div class="step-meta">DDA · GA4 linkage · incrementality baseline · ROAS reality check · ~60 min</div>
+      </div>
+      <div class="step-status">
+        <span class="priority-pill priority-foundation">Foundation</span>
+        <span class="step-toggle">+</span>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="callout danger"><div class="callout-icon">⚠</div><div class="callout-text"><strong>ROAS is not profit.</strong> Google Ads reports all attributed conversions as though they were caused by the ad. A significant portion of brand search and retargeting conversions are users who would have converted anyway. Your reported ROAS is almost certainly higher than your incremental ROAS. Measurement is how you find the truth.</div></div>
+      <ul class="checklist" id="cl-8">
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Data-driven attribution (DDA) is selected</strong> — last-click attribution ignores all non-last-touch interactions. DDA distributes credit across the full path. It requires 300+ conversions/month — if you're below that, use position-based as an interim.<span class="tag-2026">2026 Standard</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>GA4 linked to Google Ads and data flowing correctly</strong> — check that GA4 conversions are visible inside Google Ads. A disconnected or misconfigured GA4 means you're missing cross-channel data and audience signal quality degrades.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Blended ROAS vs. incremental ROAS gap estimated</strong> — pull brand search conversion volume separately. If brand search represents 40% of your conversions, your non-brand ROAS is significantly lower than the blended number suggests. Know both figures.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Cross-campaign cannibalization checked</strong> — if Search and PMax/AI Max are both serving on the same high-intent queries, compare CPA by query. If PMax is serving at a higher CPC on the same queries as Search, the bundled campaign is cannibalizing a cheaper channel.</span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Incrementality experiment framework set up or planned</strong> — geo holdout tests (pause campaigns in test markets, keep in control markets) are the only way to measure true incremental conversions. Not required monthly, but at least once per year.<span class="tag-2026">Advanced</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Google's Meridian MMM tool explored for larger accounts</strong> — Google launched Meridian in 2025 as an open-source Marketing Mix Model. For accounts over $50K/month, it provides incrementality measurement at channel level across paid and organic.<span class="tag-new">2025 Launch</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Ads Advisor alerts reviewed</strong> — launched January 2026, Ads Advisor proactively surfaces policy violations, security issues, and optimization opportunities. Check it. Don't let it sit unread.<span class="tag-new">Jan 2026</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Auto-applied recommendations reviewed and locked down</strong> — Google auto-applies recommendations unless you opt out. Review the auto-apply settings monthly. New recommendation types get added regularly and can change your account without warning.<span class="tag-warn">Watch This</span></span></li>
+        <li onclick="toggleCheck(this)"><div class="check-box"></div><span><strong>Ads in AI Overviews eligibility checked</strong> — Google expanded AI Overview ads to desktop and global markets in 2025. If you're in a supported market, your campaigns may already be serving here. Review performance and opt out if the traffic quality is poor.<span class="tag-new">2025 Expansion</span></span></li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ═══ AD SLOT ═══ -->
+<div style="max-width:1100px; margin:0 auto; padding:0 1.5rem;">
+  <div class="ad-slot ad-slot-lb"><span>Advertisement · 728×90 leaderboard</span></div>
+</div>
+
+<!-- ═══ AUTHORITY STATS ═══ -->
+<section class="section">
+  <p class="section-label reveal" style="text-align:center">Track Record</p>
+  <h2 class="section-title reveal" style="text-align:center">From Real<br>Accounts.</h2>
+  <div class="stat-strip reveal">
+    <div class="stat-item"><div class="stat-num">$550M+</div><div class="stat-label">Revenue<br>attributed</div></div>
+    <div class="stat-item"><div class="stat-num gold">53%</div><div class="stat-label">Avg CPA<br>reduction</div></div>
+    <div class="stat-item"><div class="stat-num">70×</div><div class="stat-label">Peak ROAS<br>achieved</div></div>
+    <div class="stat-item"><div class="stat-num gold">10+</div><div class="stat-label">Years Google<br>Ads experience</div></div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ═══ CTA ═══ -->
+<section class="section">
+  <div class="cta-block reveal">
+    <div>
+      <p class="cta-label">Done With The Checklist?</p>
+      <h2 class="cta-heading">Want A Second<br>Set Of Eyes?</h2>
+      <p class="cta-desc">I've run this audit across $10M+ in managed spend. If your account has problems in steps 1–3 — tracking, structure, or keyword waste — <strong>those are almost always recoverable within 30–60 days</strong>. Book a free audit call. You'll leave with a prioritized fix list, not a sales pitch.</p>
+    </div>
+    <div class="btn-group">
+      <a href="https://book.zeldigital.com" target="_blank" rel="noopener" class="btn btn-zel">Book Free Audit →</a>
+      <a href="https://zeldigital.com/results" target="_blank" rel="noopener" class="btn btn-ghost">See Case Studies →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p>
+    Guide by <a href="https://zeldigital.com" target="_blank" rel="noopener">ZELDIGITAL</a> &nbsp;·&nbsp;
+    <a href="https://hanslacida.com" target="_blank" rel="noopener">hanslacida.com</a> &nbsp;·&nbsp;
+    Updated May 2026
+  </p>
+  <p style="margin-top:0.5rem;font-size:0.52rem;">Data sourced from Google Ads platform announcements, WordStream benchmarks, and operator experience across $10M+ in managed ad spend.</p>
+  <div class="footer-cta">
+    <a href="https://book.zeldigital.com" target="_blank" rel="noopener" class="btn btn-zel" style="font-size:0.65rem;padding:0.7rem 1.4rem;">Book Free Audit →</a>
+    <a href="https://zeldigital.com/tools/google-ads-budget-estimator" target="_blank" rel="noopener" class="btn btn-ghost" style="font-size:0.65rem;padding:0.7rem 1.4rem;">Budget Estimator Tool →</a>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+gsap.timeline({ delay: 0.25 })
+  .to('.eyebrow', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
+  .to('.hero-title', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=0.4')
+  .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.5')
+  .to('.hero-tags', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+  });
+});
+
+function toggleStep(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.step-toggle');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  toggle.textContent = isOpen ? '+' : '×';
+  toggle.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(0deg)';
+}
+
+function toggleCheck(li) {
+  li.classList.toggle('checked');
+  updateProgress();
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('.checklist li');
+  const checked = document.querySelectorAll('.checklist li.checked');
+  const total = all.length;
+  const count = checked.length;
+  const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+
+  document.getElementById('global-pct').textContent = pct + '%';
+  document.getElementById('global-count').textContent = count;
+  document.getElementById('global-total').textContent = total;
+  document.getElementById('global-fill').style.width = pct + '%';
+
+  let status = 'Check items as you audit to track progress.';
+  let color = 'var(--muted)';
+  if (pct > 0 && pct <= 25) { status = 'Critical issues likely present. Fix tracking and structure first.'; color = 'var(--danger)'; }
+  else if (pct > 25 && pct <= 50) { status = 'Getting there. Prioritize bid strategy and PMax inputs next.'; color = 'var(--warn)'; }
+  else if (pct > 50 && pct <= 75) { status = 'Healthy account. Focus on attribution and audience depth.'; color = 'var(--gold)'; }
+  else if (pct > 75) { status = 'Elite-level account setup. Maintain and keep auditing quarterly.'; color = 'var(--zel)'; }
+  const statusEl = document.getElementById('global-status');
+  statusEl.textContent = status;
+  statusEl.style.color = color;
+
+  document.getElementById('global-pct').style.color = pct > 75 ? 'var(--zel)' : pct > 50 ? 'var(--gold)' : pct > 25 ? 'var(--warn)' : count > 0 ? 'var(--danger)' : 'var(--zel)';
+  document.getElementById('global-fill').style.background = pct > 75 ? 'var(--zel)' : pct > 50 ? 'var(--gold)' : pct > 25 ? 'var(--warn)' : 'var(--danger)';
+}
+
+updateProgress();
+</script>
+</body>
+</html>

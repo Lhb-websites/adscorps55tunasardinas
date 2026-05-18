@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Budget Estimator — Free Tool by ZELDIGITAL</title>
+<meta name="description" content="Estimate your Google Ads monthly spend, expected clicks, leads, and cost-per-acquisition by industry. Free tool by Hans Lacida / ZELDIGITAL.">
+<link rel="canonical" href="https://zeldigital.com/tools/google-ads-budget-estimator">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Google Ads Budget Estimator",
+  "description": "Free interactive tool to estimate Google Ads monthly spend, CPC, clicks, and cost-per-lead by industry and campaign goal.",
+  "url": "https://zeldigital.com/tools/google-ads-budget-estimator",
+  "applicationCategory": "BusinessApplication",
+  "author": {
+    "@type": "Person",
+    "name": "Hans Lacida",
+    "url": "https://zeldigital.com",
+    "jobTitle": "Paid Acquisition Systems Operator"
+  },
+  "publisher": { "@type": "Organization", "name": "ZELDIGITAL", "url": "https://zeldigital.com" }
+}
+</script>
+
+<style>
+  :root {
+    --zel: #00C6A7;
+    --gold: #F5C842;
+    --warn: #F97316;
+    --bg: #0A0A0A;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #F0EDE8;
+    --muted: #7A7774;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px; line-height: 1.6; overflow-x: hidden;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03; pointer-events: none; z-index: 9999;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 80vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center; padding: 6rem 1.5rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg::before {
+    content: ''; position: absolute;
+    top: -20%; left: 10%; width: 80%; height: 100%;
+    background: radial-gradient(ellipse, rgba(0,198,167,0.12) 0%, transparent 65%);
+  }
+  .hero-bg::after {
+    content: ''; position: absolute;
+    top: 30%; right: -5%; width: 40%; height: 60%;
+    background: radial-gradient(ellipse, rgba(245,200,66,0.06) 0%, transparent 70%);
+  }
+  .eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 1.75rem; position: relative; z-index: 2; opacity: 0;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 7.5rem);
+    line-height: 0.9; letter-spacing: 0.02em;
+    position: relative; z-index: 2; opacity: 0;
+  }
+  .hero-title .accent { color: var(--zel); }
+  .hero-sub {
+    max-width: 560px; margin: 2rem auto 0;
+    font-size: 1rem; font-weight: 300; color: var(--muted);
+    position: relative; z-index: 2; opacity: 0;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+  .hero-tags {
+    margin-top: 1.75rem; display: flex; gap: 0.65rem;
+    flex-wrap: wrap; justify-content: center;
+    position: relative; z-index: 2; opacity: 0;
+  }
+  .hero-tag {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    padding: 0.3em 0.85em; border-radius: 100px; border: 1px solid var(--border);
+  }
+  .hero-tag.zel { border-color: rgba(0,198,167,0.3); color: var(--zel); background: rgba(0,198,167,0.07); }
+  .hero-tag.gold { border-color: rgba(245,200,66,0.3); color: var(--gold); background: rgba(245,200,66,0.07); }
+  .scroll-cue {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; z-index: 2;
+  }
+  .scroll-line {
+    width: 1px; height: 45px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%,100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.15); }
+  }
+
+  /* ─── LAYOUT ─── */
+  .section { padding: 5rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Space Mono', monospace; font-size: 0.63rem;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 4.5vw, 4rem); line-height: 0.95; margin-bottom: 2.75rem;
+  }
+  .full-divider { height: 1px; background: var(--border); margin: 0 1.5rem; }
+  .reveal { opacity: 0; transform: translateY(24px); }
+
+  /* ─── AD SLOT ─── */
+  .ad-slot {
+    border: 1px dashed var(--border2); border-radius: 10px;
+    padding: 1.5rem; text-align: center; margin: 2rem 0;
+    display: flex; align-items: center; justify-content: center; min-height: 90px;
+  }
+  .ad-slot span {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+  }
+  .ad-slot-leaderboard { min-height: 90px; }
+  .ad-slot-rect { min-height: 250px; }
+
+  /* ─── TOOL CARD ─── */
+  .tool-wrap {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .tool-header {
+    padding: 2rem 2.5rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  }
+  .tool-header-left {}
+  .tool-badge {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    background: rgba(0,198,167,0.1); color: var(--zel);
+    padding: 0.3em 0.8em; border-radius: 100px; display: inline-block; margin-bottom: 0.7rem;
+  }
+  .tool-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1; color: var(--text);
+  }
+  .tool-title .accent { color: var(--zel); }
+  .tool-meta {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem;
+  }
+  .tool-body { padding: 2rem 2.5rem; }
+
+  /* ─── FORM GRID ─── */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.75rem; }
+  .form-field { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-field label {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+  }
+  .form-field select,
+  .form-field input[type=number] {
+    background: var(--bg); border: 1.5px solid var(--border);
+    border-radius: 8px; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    padding: 0.7rem 1rem; outline: none; width: 100%;
+    appearance: none; -webkit-appearance: none;
+    transition: border-color 0.2s;
+  }
+  .form-field select:focus,
+  .form-field input[type=number]:focus { border-color: var(--zel); }
+  .form-field select option { background: #111; }
+
+  /* ─── SLIDERS ─── */
+  .slider-group { margin-bottom: 1.5rem; }
+  .slider-row { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.25rem; }
+  .slider-label-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .slider-label {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+  }
+  .slider-val {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+    color: var(--zel); line-height: 1;
+  }
+  input[type=range] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 3px; border-radius: 3px; outline: none; cursor: pointer;
+    background: linear-gradient(to right, var(--zel) 0%, var(--zel) 0%, var(--border2) 0%);
+    transition: background 0.1s;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--zel); cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,198,167,0.4);
+    transition: transform 0.15s;
+  }
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  input[type=range]::-moz-range-thumb {
+    width: 18px; height: 18px; border-radius: 50%; border: none;
+    background: var(--zel); cursor: pointer;
+  }
+
+  /* ─── RESULTS ─── */
+  .results-divider {
+    height: 1px; background: var(--border); margin: 0.5rem 0 2rem;
+  }
+  .results-label {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+  }
+  .metrics-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1.75rem;
+  }
+  .metric-card {
+    background: var(--surface2); padding: 1.5rem 1.2rem; text-align: center;
+    transition: background 0.3s;
+  }
+  .metric-card:hover { background: #1c1c1c; }
+  .metric-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; line-height: 1;
+    color: var(--zel); margin-bottom: 0.25rem;
+  }
+  .metric-num.warn { color: var(--warn); }
+  .metric-num.gold { color: var(--gold); }
+  .metric-label {
+    font-family: 'Space Mono', monospace; font-size: 0.56rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); line-height: 1.5;
+  }
+  .metric-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* ─── BUDGET BAR ─── */
+  .bar-section { margin-bottom: 1.75rem; }
+  .bar-label-row {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;
+  }
+  .bar-outer {
+    height: 8px; background: rgba(255,255,255,0.06);
+    border-radius: 8px; overflow: hidden; position: relative;
+  }
+  .bar-inner {
+    height: 100%; border-radius: 8px;
+    background: var(--zel); transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+  .bar-legend { display: flex; gap: 1.5rem; margin-top: 0.6rem; }
+  .bar-legend span {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+
+  /* ─── INSIGHT BOX ─── */
+  .insight-box {
+    background: rgba(0,198,167,0.04); border: 1.5px solid rgba(0,198,167,0.15);
+    border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 1.75rem;
+    position: relative; overflow: hidden;
+  }
+  .insight-box::before {
+    content: 'INSIGHT'; position: absolute; right: 1.5rem; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif; font-size: 4rem;
+    color: rgba(0,198,167,0.04); letter-spacing: 0.1em; pointer-events: none;
+  }
+  .insight-eyebrow {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--zel);
+    margin-bottom: 0.5rem;
+  }
+  .insight-text { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+  .insight-text strong { color: var(--text); }
+  .insight-text .zel { color: var(--zel); }
+  .insight-text .warn { color: var(--warn); }
+  .insight-text .gold { color: var(--gold); }
+
+  /* ─── WHAT-IF TOGGLE ─── */
+  .whatif-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1.75rem;
+  }
+  .whatif-item { background: var(--surface2); padding: 1.2rem 1rem; transition: background 0.3s; }
+  .whatif-item:hover { background: #1c1c1c; }
+  .whatif-scenario {
+    font-family: 'Space Mono', monospace; font-size: 0.56rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .whatif-val {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; line-height: 1; margin-bottom: 0.2rem;
+  }
+  .whatif-val.conservative { color: var(--muted); }
+  .whatif-val.base { color: var(--zel); }
+  .whatif-val.aggressive { color: var(--gold); }
+  .whatif-desc { font-size: 0.75rem; color: var(--muted); }
+
+  /* ─── CTA ─── */
+  .cta-block {
+    background: rgba(0,198,167,0.04); border: 1.5px solid rgba(0,198,167,0.2);
+    border-radius: 14px; padding: 2rem 2.25rem;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 2rem; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-block::before {
+    content: 'AUDIT'; position: absolute; right: 2rem; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif; font-size: 5rem;
+    color: rgba(0,198,167,0.04); letter-spacing: 0.1em; pointer-events: none;
+  }
+  .cta-label {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--zel); margin-bottom: 0.5rem;
+  }
+  .cta-heading {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; line-height: 1; margin-bottom: 0.6rem;
+  }
+  .cta-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+  .cta-desc strong { color: var(--text); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.75rem; border-radius: 8px;
+    font-family: 'Space Mono', monospace; font-size: 0.7rem;
+    letter-spacing: 0.1em; font-weight: 700; text-transform: uppercase;
+    text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; white-space: nowrap;
+  }
+  .btn-zel { background: var(--zel); color: #0A0A0A; }
+  .btn-zel:hover { background: #00E0BC; box-shadow: 0 0 28px rgba(0,198,167,0.4); transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--muted); border: 1.5px solid var(--border); }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); color: var(--text); transform: translateY(-2px); }
+
+  /* ─── CPC TABLE ─── */
+  .cpc-table-wrap { overflow-x: auto; border-radius: 14px; border: 1.5px solid var(--border); margin-bottom: 1.75rem; }
+  .cpc-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+  .cpc-table thead tr { background: var(--surface); border-bottom: 1.5px solid var(--border); }
+  .cpc-table thead th {
+    padding: 1rem 1.2rem; text-align: left; font-weight: 400;
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+  }
+  .cpc-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.2s; }
+  .cpc-table tbody tr:last-child { border-bottom: none; }
+  .cpc-table tbody tr.active { background: rgba(0,198,167,0.05); }
+  .cpc-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+  .cpc-table tbody td { padding: 0.9rem 1.2rem; vertical-align: middle; font-size: 0.88rem; color: var(--muted); }
+  .cpc-table tbody td:first-child { color: var(--text); font-weight: 600; }
+  .active-row-label {
+    font-family: 'Space Mono', monospace; font-size: 0.56rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: rgba(0,198,167,0.1); color: var(--zel);
+    padding: 0.2em 0.6em; border-radius: 100px; margin-left: 0.5rem;
+  }
+  .diff-pill {
+    display: inline-block; font-family: 'Space Mono', monospace;
+    font-size: 0.6rem; padding: 0.2em 0.6em; border-radius: 100px;
+    font-weight: 700;
+  }
+  .diff-up { background: rgba(249,115,22,0.1); color: var(--warn); }
+  .diff-down { background: rgba(0,198,167,0.1); color: var(--zel); }
+
+  /* ─── HOW IT WORKS ─── */
+  .how-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border); border-radius: 16px; overflow: hidden;
+  }
+  .how-item {
+    background: var(--surface); padding: 2rem 1.6rem;
+    position: relative; transition: background 0.3s;
+  }
+  .how-item:hover { background: var(--surface2); }
+  .how-item::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--zel); opacity: 0.5;
+  }
+  .how-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1;
+    color: rgba(0,198,167,0.15); margin-bottom: 0.75rem;
+  }
+  .how-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
+    color: var(--text); margin-bottom: 0.5rem;
+  }
+  .how-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .how-desc strong { color: var(--text); }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 3rem;
+  }
+  .stats-bar-item { background: var(--surface); padding: 1.6rem 1.2rem; text-align: center; }
+  .stats-bar-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1;
+    color: var(--zel); margin-bottom: 0.25rem;
+  }
+  .stats-bar-label {
+    font-family: 'Space Mono', monospace; font-size: 0.56rem;
+    letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); line-height: 1.5;
+  }
+
+  /* ─── DISCLAIMER ─── */
+  .disclaimer {
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.2rem 1.5rem; margin-top: 1.25rem;
+  }
+  .disclaimer p {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.08em; color: var(--muted); line-height: 1.7;
+  }
+
+  /* ─── FAQ ─── */
+  .faq-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .faq-item { background: var(--surface); }
+  .faq-q {
+    width: 100%; background: none; border: none; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600;
+    text-align: left; padding: 1.3rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .faq-q:hover { background: var(--surface2); }
+  .faq-icon {
+    font-family: 'Space Mono', monospace; font-size: 1rem;
+    color: var(--zel); transition: transform 0.3s; flex-shrink: 0; margin-left: 1rem;
+  }
+  .faq-a {
+    font-size: 0.88rem; color: var(--muted); line-height: 1.7;
+    padding: 0 1.5rem 1.3rem; display: none;
+  }
+  .faq-a.open { display: block; }
+  .faq-a strong { color: var(--text); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 3rem 1.5rem; text-align: center;
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--zel); }
+  .footer-cta { margin-top: 1rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .whatif-grid { grid-template-columns: 1fr; gap: 1px; }
+    .how-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .cta-block { grid-template-columns: 1fr; }
+    .cta-block::before { display: none; }
+    .tool-header { flex-direction: column; }
+    .tool-body { padding: 1.5rem; }
+    .tool-header { padding: 1.5rem; }
+  }
+  @media (max-width: 480px) {
+    .section { padding: 3.5rem 1rem; }
+    .metrics-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <p class="eyebrow">Free Tool by ZELDIGITAL · Google Ads Specialist · 2026</p>
+  <h1 class="hero-title">
+    Google Ads<br><span class="accent">Budget</span><br>Estimator
+  </h1>
+  <p class="hero-sub">
+    Know your numbers before you spend a dollar.<br>
+    <strong>Estimate clicks, leads, and CPA by industry — instantly.</strong>
+  </p>
+  <div class="hero-tags">
+    <span class="hero-tag zel">Search Campaigns</span>
+    <span class="hero-tag zel">Performance Max</span>
+    <span class="hero-tag gold">7 Industries</span>
+    <span class="hero-tag">Free · No signup</span>
+  </div>
+  <div class="scroll-cue">
+    <span>Estimate</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══ AD SLOT — LEADERBOARD ═══ -->
+<div style="max-width:1100px; margin:0 auto; padding:0 1.5rem;">
+  <div class="ad-slot ad-slot-leaderboard">
+    <span>Advertisement · 728×90 leaderboard</span>
+  </div>
+</div>
+
+<!-- ═══ TOOL ═══ -->
+<section class="section" style="padding-top:1rem;">
+  <div class="tool-wrap reveal">
+    <div class="tool-header">
+      <div class="tool-header-left">
+        <span class="tool-badge">Interactive Estimator</span>
+        <h2 class="tool-title">Your <span class="accent">Google Ads</span> Snapshot</h2>
+        <p class="tool-meta">Adjust inputs below · Results update in real time</p>
+      </div>
+    </div>
+
+    <div class="tool-body">
+
+      <!-- INPUTS -->
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Industry / Vertical</label>
+          <select id="industry" onchange="calc()">
+            <option value="hvac">HVAC / Home Services</option>
+            <option value="legal">Legal</option>
+            <option value="ecomm">E-commerce</option>
+            <option value="health">Healthcare / Medspa</option>
+            <option value="b2b">B2B / SaaS</option>
+            <option value="hospitality">Hospitality / Travel</option>
+            <option value="finance">Finance</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Campaign Goal</label>
+          <select id="goal" onchange="calc()">
+            <option value="leads">Lead generation</option>
+            <option value="sales">Direct sales / E-commerce</option>
+            <option value="calls">Phone call conversions</option>
+            <option value="awareness">Brand awareness</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Target Location</label>
+          <select id="location" onchange="calc()">
+            <option value="local">Local — 1 city / metro</option>
+            <option value="regional">Regional — state / province</option>
+            <option value="national">National — US wide</option>
+            <option value="intl">International</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Current Monthly Revenue (USD)</label>
+          <input type="number" id="revenue" value="50000" min="0" oninput="calc()" placeholder="e.g. 50000" />
+        </div>
+      </div>
+
+      <!-- SLIDERS -->
+      <div class="slider-group">
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Target Monthly Budget</span>
+            <span class="slider-val" id="budget-out">$3,000</span>
+          </div>
+          <input type="range" id="budget" min="500" max="50000" step="500" value="3000" oninput="calc()" />
+        </div>
+        <div class="slider-row">
+          <div class="slider-label-row">
+            <span class="slider-label">Target Conversion Rate</span>
+            <span class="slider-val" id="cvr-out">5%</span>
+          </div>
+          <input type="range" id="cvr" min="1" max="20" step="1" value="5" oninput="calc()" />
+        </div>
+      </div>
+
+      <div class="results-divider"></div>
+      <p class="results-label">Estimated Monthly Results</p>
+
+      <!-- METRICS -->
+      <div class="metrics-grid" id="metrics-grid">
+        <div class="metric-card"><div class="metric-num" id="m-clicks">—</div><div class="metric-label">Est. Clicks</div><div class="metric-sub" id="m-cpc-sub">—</div></div>
+        <div class="metric-card"><div class="metric-num" id="m-convs">—</div><div class="metric-label" id="m-conv-label">Est. Leads</div><div class="metric-sub" id="m-cvr-sub">—</div></div>
+        <div class="metric-card"><div class="metric-num gold" id="m-cpa">—</div><div class="metric-label" id="m-cpa-label">Cost Per Lead</div><div class="metric-sub">est. CPA</div></div>
+        <div class="metric-card"><div class="metric-num warn" id="m-waste">—</div><div class="metric-label">Est. Wasted Spend</div><div class="metric-sub">without optimization</div></div>
+      </div>
+
+      <!-- BUDGET BAR -->
+      <div class="bar-section">
+        <div class="bar-label-row">
+          <span class="slider-label">Budget Efficiency Breakdown</span>
+          <span style="font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);" id="bar-pct-label">75% active</span>
+        </div>
+        <div class="bar-outer">
+          <div class="bar-inner" id="bar-inner" style="width:75%;"></div>
+        </div>
+        <div class="bar-legend">
+          <span><span class="dot" style="background:var(--zel);"></span>Working spend</span>
+          <span><span class="dot" style="background:var(--warn);"></span>Estimated waste (avg 20–30% unoptimized)</span>
+        </div>
+      </div>
+
+      <!-- INSIGHT -->
+      <div class="insight-box">
+        <p class="insight-eyebrow">Analyst Read</p>
+        <p class="insight-text" id="insight-text">Configure your inputs above to see your personalized analysis.</p>
+      </div>
+
+      <!-- WHAT-IF SCENARIOS -->
+      <p class="results-label">What-If Scenarios — Leads at Different CVR</p>
+      <div class="whatif-grid" id="whatif-grid">
+        <div class="whatif-item"><div class="whatif-scenario">Conservative · -50% CVR</div><div class="whatif-val conservative" id="wf-low">—</div><div class="whatif-desc" id="wf-low-desc">—</div></div>
+        <div class="whatif-item"><div class="whatif-scenario">Base · Your Target CVR</div><div class="whatif-val base" id="wf-base">—</div><div class="whatif-desc" id="wf-base-desc">—</div></div>
+        <div class="whatif-item"><div class="whatif-scenario">Aggressive · +50% CVR</div><div class="whatif-val aggressive" id="wf-high">—</div><div class="whatif-desc" id="wf-high-desc">—</div></div>
+      </div>
+
+      <!-- AD SLOT — RECTANGLE IN TOOL -->
+      <div class="ad-slot ad-slot-rect">
+        <span>Advertisement · 300×250 rectangle</span>
+      </div>
+
+      <!-- DISCLAIMER -->
+      <div class="disclaimer">
+        <p>Estimates are based on industry-average CPCs and typical conversion rates. Actual performance varies by account history, landing page quality, keyword match types, competition, and campaign structure. This tool is for planning purposes only — not a performance guarantee. CPC benchmarks sourced from Google Ads industry data, WordStream, and operator experience across $10M+ in managed spend.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ═══ CPC REFERENCE TABLE ═══ -->
+<section class="section">
+  <p class="section-label reveal">Industry Benchmarks</p>
+  <h2 class="section-title reveal">Average CPC By<br>Industry.</h2>
+  <div class="cpc-table-wrap reveal">
+    <table class="cpc-table">
+      <thead>
+        <tr>
+          <th>Industry</th>
+          <th>Avg CPC (USD)</th>
+          <th>Typical CVR</th>
+          <th>Difficulty</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody id="cpc-tbody"></tbody>
+    </table>
+  </div>
+  <div class="ad-slot ad-slot-leaderboard reveal">
+    <span>Advertisement · 728×90 leaderboard</span>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ═══ AUTHORITY STATS ═══ -->
+<section class="section">
+  <p class="section-label reveal" style="text-align:center">Track Record</p>
+  <h2 class="section-title reveal" style="text-align:center">Numbers From<br>Real Accounts.</h2>
+  <div class="stats-bar reveal">
+    <div class="stats-bar-item">
+      <div class="stats-bar-num">$550M+</div>
+      <div class="stats-bar-label">Revenue<br>influenced</div>
+    </div>
+    <div class="stats-bar-item">
+      <div class="stats-bar-num">53%</div>
+      <div class="stats-bar-label">Average CPA<br>reduction</div>
+    </div>
+    <div class="stats-bar-item">
+      <div class="stats-bar-num">70×</div>
+      <div class="stats-bar-label">Peak ROAS<br>achieved</div>
+    </div>
+    <div class="stats-bar-item">
+      <div class="stats-bar-num">10+</div>
+      <div class="stats-bar-label">Years Google<br>Ads experience</div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="section">
+  <p class="section-label reveal">Behind The Numbers</p>
+  <h2 class="section-title reveal">How This<br>Estimator Works.</h2>
+  <div class="how-grid reveal">
+    <div class="how-item">
+      <div class="how-num">01</div>
+      <h3 class="how-title">Industry CPC Benchmarks</h3>
+      <p class="how-desc">Average CPCs are sourced from <strong>Google Ads data, WordStream benchmarks</strong>, and 10+ years of firsthand operator experience across $10M+ in managed spend — not generic guesses.</p>
+    </div>
+    <div class="how-item">
+      <div class="how-num">02</div>
+      <h3 class="how-title">Location & Competition Modifiers</h3>
+      <p class="how-desc">Local markets bid at a discount vs national. <strong>National competition increases CPC 25–30%</strong>. International can be 30% lower. Location multipliers adjust your estimate accordingly.</p>
+    </div>
+    <div class="how-item">
+      <div class="how-num">03</div>
+      <h3 class="how-title">Waste Is Built In</h3>
+      <p class="how-desc">Most unoptimized accounts waste <strong>20–30% of budget</strong> on irrelevant queries, poor match types, and auto-applied recommendations. The estimator shows you what that costs monthly.</p>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ═══ CTA ═══ -->
+<section class="section">
+  <div class="cta-block reveal">
+    <div>
+      <p class="cta-label">Free Account Audit</p>
+      <h2 class="cta-heading">Is Your Account<br>Wasting Budget?</h2>
+      <p class="cta-desc">Most accounts I audit have <strong>30–40% of spend going to the wrong places</strong> — wrong keywords, broken tracking, misaligned bid strategies. A free audit finds the leaks before you scale. No pitch, no obligation.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.75rem;position:relative;z-index:1;">
+      <a href="https://book.zeldigital.com" target="_blank" rel="noopener" class="btn btn-zel">Book Free Audit →</a>
+      <a href="https://zeldigital.com/results" target="_blank" rel="noopener" class="btn btn-ghost">See Case Studies →</a>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- ═══ FAQ ═══ -->
+<section class="section">
+  <p class="section-label reveal">Common Questions</p>
+  <h2 class="section-title reveal">FAQ.</h2>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How accurate are these estimates?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        <strong>Directionally accurate, not precise.</strong> CPC benchmarks are industry averages — your actual CPC will depend on Quality Score, ad relevance, landing page experience, and competition in your specific market. Use this as a starting range, then refine with real account data after 30–60 days of live campaigns.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Why does the tool show 20–30% wasted spend?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        This is the industry average for <strong>unoptimized accounts</strong>. Wasted spend comes from broad match keywords triggering irrelevant searches, auto-applied recommendations that increase spend without improving performance, poor negative keyword hygiene, and budget allocated to low-intent audience segments. Proper campaign structure and ongoing optimization can recover most of this.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What's a realistic conversion rate for Google Ads?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        It depends heavily on your landing page quality and offer. <strong>Industry averages range from 2–8% for lead gen</strong>, 1–4% for e-commerce sales, and 6–12% for call-focused campaigns. Healthcare and legal tend to convert lower on volume but at higher CPA. Start with 3–5% as a conservative baseline and optimize from there.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What's a good starting budget for Google Ads?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        Minimum viable budget depends on your CPA target and average CPC. A rough rule: <strong>you want at least 30–50 clicks per day</strong> to give Google's algorithm enough data to optimize. For a $10 avg CPC that's $300–$500/day — $9,000–$15,000/month. Lower CPC industries (e-commerce, travel) can start at $1,500–$3,000/month. High-CPC verticals (legal, finance) often need $5,000+ to see meaningful volume.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What does a Google Ads audit actually cover?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">
+        A proper audit covers: <strong>campaign structure and budget allocation</strong>, keyword match type hygiene and negative keyword gaps, bid strategy alignment with your conversion goal, conversion tracking accuracy (this is broken in more accounts than you'd think), Quality Score and ad relevance issues, audience segmentation, and Performance Max asset group ratings. The free audit from ZELDIGITAL covers all of these in a documented report.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p>
+    Built by <a href="https://zeldigital.com" target="_blank" rel="noopener">ZELDIGITAL</a> &nbsp;·&nbsp;
+    <a href="https://hanslacida.com" target="_blank" rel="noopener">hanslacida.com</a> &nbsp;·&nbsp;
+    Tool updated May 2026
+  </p>
+  <p style="margin-top:0.5rem;font-size:0.52rem;">Estimates are for planning purposes only and are not guarantees of performance.</p>
+  <div class="footer-cta">
+    <a href="https://book.zeldigital.com" target="_blank" rel="noopener" class="btn btn-zel" style="font-size:0.65rem;padding:0.7rem 1.4rem;">Book Free Audit →</a>
+    <a href="https://zeldigital.com" target="_blank" rel="noopener" class="btn btn-ghost" style="font-size:0.65rem;padding:0.7rem 1.4rem;">ZELDIGITAL →</a>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+gsap.timeline({ delay: 0.25 })
+  .to('.eyebrow', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
+  .to('.hero-title', { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=0.4')
+  .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.5')
+  .to('.hero-tags', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.to(el, {
+    opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+  });
+});
+
+const INDUSTRIES = {
+  hvac:        { label: 'HVAC / Home Services', cpc: 18,  cvr: 0.06, diff: 'High',   bestFor: 'Local lead gen' },
+  legal:       { label: 'Legal',                cpc: 45,  cvr: 0.04, diff: 'Very High', bestFor: 'Lead gen, call campaigns' },
+  ecomm:       { label: 'E-commerce',           cpc: 1.8, cvr: 0.03, diff: 'Medium', bestFor: 'Direct sales, shopping' },
+  health:      { label: 'Healthcare / Medspa',  cpc: 22,  cvr: 0.05, diff: 'High',   bestFor: 'Lead gen, bookings' },
+  b2b:         { label: 'B2B / SaaS',           cpc: 12,  cvr: 0.05, diff: 'Medium-High', bestFor: 'Lead gen, demos' },
+  hospitality: { label: 'Hospitality / Travel', cpc: 3.5, cvr: 0.04, diff: 'Medium', bestFor: 'Direct bookings' },
+  finance:     { label: 'Finance',              cpc: 38,  cvr: 0.05, diff: 'Very High', bestFor: 'Lead gen, applications' }
+};
+
+const LOC_MOD = { local: 0.82, regional: 1.0, national: 1.28, intl: 0.68 };
+const LOC_LABELS = { local: 'Local', regional: 'Regional', national: 'National', intl: 'International' };
+const GOAL_LABELS = { leads: 'leads', sales: 'sales', calls: 'calls', awareness: 'impressions' };
+const GOAL_CPA_LABELS = { leads: 'Cost Per Lead', sales: 'Cost Per Sale', calls: 'Cost Per Call', awareness: 'Cost Per 1K Impr.' };
+
+function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+function fmtN(n) { return Math.round(n).toLocaleString(); }
+
+function updateSliderTrack(el) {
+  const min = parseFloat(el.min), max = parseFloat(el.max), val = parseFloat(el.value);
+  const pct = ((val - min) / (max - min)) * 100;
+  el.style.background = `linear-gradient(to right, var(--zel) ${pct}%, var(--zel) ${pct}%, rgba(255,255,255,0.12) ${pct}%)`;
+}
+
+function calc() {
+  const ind = document.getElementById('industry').value;
+  const goal = document.getElementById('goal').value;
+  const loc = document.getElementById('location').value;
+  const budget = parseInt(document.getElementById('budget').value);
+  const cvr = parseInt(document.getElementById('cvr').value) / 100;
+
+  const budgetEl = document.getElementById('budget');
+  const cvrEl = document.getElementById('cvr');
+  updateSliderTrack(budgetEl);
+  updateSliderTrack(cvrEl);
+
+  document.getElementById('budget-out').textContent = fmt(budget);
+  document.getElementById('cvr-out').textContent = (cvr * 100).toFixed(0) + '%';
+
+  const data = INDUSTRIES[ind];
+  const adjCpc = data.cpc * LOC_MOD[loc];
+  const clicks = Math.round(budget / adjCpc);
+  const waste = Math.round(budget * 0.25);
+  const barPct = Math.min(95, Math.round(((budget - waste) / budget) * 100));
+
+  let convs, cpa, mNum, mLabel, cpaLabel;
+  if (goal === 'awareness') {
+    const impressions = Math.round(clicks * 10);
+    mNum = fmtN(impressions);
+    mLabel = 'Est. Impressions';
+    cpa = budget / (impressions / 1000);
+    cpaLabel = 'Cost / 1K Impr.';
+    convs = impressions;
+  } else {
+    convs = Math.round(clicks * cvr);
+    cpa = convs > 0 ? Math.round(budget / convs) : 0;
+    mNum = fmtN(convs);
+    mLabel = 'Est. ' + GOAL_LABELS[goal].charAt(0).toUpperCase() + GOAL_LABELS[goal].slice(1);
+    cpaLabel = GOAL_CPA_LABELS[goal];
+  }
+
+  document.getElementById('m-clicks').textContent = fmtN(clicks);
+  document.getElementById('m-cpc-sub').textContent = 'at ~' + fmt(Math.round(adjCpc)) + ' avg CPC';
+  document.getElementById('m-convs').textContent = mNum;
+  document.getElementById('m-conv-label').textContent = mLabel;
+  document.getElementById('m-cvr-sub').textContent = goal !== 'awareness' ? 'at ' + (cvr * 100).toFixed(0) + '% CVR' : 'search volume × 10';
+  document.getElementById('m-cpa').textContent = fmt(cpa);
+  document.getElementById('m-cpa-label').textContent = cpaLabel;
+  document.getElementById('m-waste').textContent = fmt(waste);
+  document.getElementById('bar-inner').style.width = barPct + '%';
+  document.getElementById('bar-pct-label').textContent = barPct + '% working spend';
+
+  // What-if
+  const cvrLow = Math.max(0.01, cvr * 0.5);
+  const cvrHigh = Math.min(0.5, cvr * 1.5);
+  if (goal !== 'awareness') {
+    const low = Math.round(clicks * cvrLow);
+    const high = Math.round(clicks * cvrHigh);
+    document.getElementById('wf-low').textContent = fmtN(low) + ' ' + GOAL_LABELS[goal];
+    document.getElementById('wf-low-desc').textContent = 'CPA: ' + fmt(low > 0 ? Math.round(budget / low) : 0);
+    document.getElementById('wf-base').textContent = fmtN(convs) + ' ' + GOAL_LABELS[goal];
+    document.getElementById('wf-base-desc').textContent = 'CPA: ' + fmt(cpa);
+    document.getElementById('wf-high').textContent = fmtN(high) + ' ' + GOAL_LABELS[goal];
+    document.getElementById('wf-high-desc').textContent = 'CPA: ' + fmt(high > 0 ? Math.round(budget / high) : 0);
+  } else {
+    ['wf-low','wf-base','wf-high'].forEach(id => document.getElementById(id).textContent = '—');
+    ['wf-low-desc','wf-base-desc','wf-high-desc'].forEach(id => document.getElementById(id).textContent = 'N/A for awareness');
+  }
+
+  // Insight
+  let insight = '';
+  const cpaHigh = cpa > data.cpc * 8;
+  const cpaLow = cpa < data.cpc * 1.5;
+  const locLabel = LOC_LABELS[loc];
+
+  if (goal === 'awareness') {
+    insight = `A <strong>${locLabel} ${data.label}</strong> awareness campaign at <span class="zel">${fmt(budget)}/month</span> will generate an estimated <strong>${fmtN(convs)} impressions</strong>. Awareness campaigns are hard to tie to direct ROI — pair this with a <strong>remarketing layer</strong> to recapture intent later. Consider adding conversion-focused campaigns once your brand is warmer in market.`;
+  } else {
+    let cpaNote = '';
+    if (cpaHigh) {
+      cpaNote = ` Your estimated CPA of <span class="warn">${fmt(cpa)}</span> is on the <span class="warn">higher end</span> for this industry — tightening keyword match types, improving ad relevance, and testing a stronger landing page offer could bring this down 20–40%.`;
+    } else if (cpaLow) {
+      cpaNote = ` Your estimated CPA of <span class="zel">${fmt(cpa)}</span> looks aggressive — <strong>double-check your conversion tracking</strong> is firing accurately before scaling. A low CPA on paper often means tracking is overcounting.`;
+    } else {
+      cpaNote = ` Your estimated CPA of <span class="gold">${fmt(cpa)}</span> is within a reasonable starting range for this vertical. Focus the first 60 days on <strong>data collection and negative keyword hygiene</strong> before scaling budget.`;
+    }
+
+    insight = `A <span class="zel">${fmt(budget)}/month</span> budget in <strong>${data.label}</strong> targeting <strong>${locLabel}</strong> should drive roughly <span class="zel">${fmtN(clicks)} clicks</span> and <span class="zel">${fmtN(convs)} ${GOAL_LABELS[goal]}</span> at your target conversion rate.${cpaNote} Roughly <span class="warn">${fmt(waste)}</span> of your budget will be wasted without active negative keyword management and match type discipline.`;
+  }
+  document.getElementById('insight-text').innerHTML = insight;
+
+  // Update active row in CPC table
+  document.querySelectorAll('.cpc-table tbody tr').forEach(row => {
+    row.classList.toggle('active', row.dataset.ind === ind);
+  });
+}
+
+// Build CPC table
+const tbody = document.getElementById('cpc-tbody');
+const allIndustries = ['hvac','legal','ecomm','health','b2b','hospitality','finance'];
+const diffColors = { 'High': '#F97316', 'Very High': '#E24B4A', 'Medium': '#00C6A7', 'Medium-High': '#F5C842' };
+allIndustries.forEach(key => {
+  const d = INDUSTRIES[key];
+  const diffColor = diffColors[d.diff] || '#7A7774';
+  const tr = document.createElement('tr');
+  tr.dataset.ind = key;
+  tr.innerHTML = `
+    <td>${d.label}</td>
+    <td><strong style="color:var(--text);">$${d.cpc.toFixed(2)}</strong> avg</td>
+    <td>${(d.cvr * 100).toFixed(0)}–${Math.min(20, Math.round(d.cvr * 150))}%</td>
+    <td><span style="color:${diffColor};font-weight:600;">${d.diff}</span></td>
+    <td>${d.bestFor}</td>
+  `;
+  tbody.appendChild(tr);
+});
+
+// FAQ toggle
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-icon');
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(i => { i.textContent = '+'; i.style.transform = 'rotate(0deg)'; });
+  if (!isOpen) {
+    answer.classList.add('open');
+    icon.textContent = '×';
+    icon.style.transform = 'rotate(0deg)';
+  }
+}
+
+// Init
+document.querySelectorAll('input[type=range]').forEach(updateSliderTrack);
+calc();
+</script>
+</body>
+</html>
